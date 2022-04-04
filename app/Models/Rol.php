@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    use HasFactory;
+    function index()
+    {
+        $roles = Rol::all();
+        return view('activities/select_activitie',);
+    }
 }

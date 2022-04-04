@@ -14,16 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('email', 50)->unique();
             $table->string('password');
+            $table->bigInteger('rol_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('rol_id')->references('id')->on('roles')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('rol_id')->default(1);
-            // $table->foreign('rol_id')->references('id')->on("roles");
-        });
+        // Schema::table('users', function (Blueprint $table) {
+
+        //     // $table->foreign('rol_id')->references('id')->on("roles");
+        // });
     }
 
     /**
