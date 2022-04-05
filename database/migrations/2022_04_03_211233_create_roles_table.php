@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            $table->string('name', 50);
+            $table->bigIncrements('rol_id');
+            $table->string('rol_name', 50);
             $table->timestamps();
         });
     }

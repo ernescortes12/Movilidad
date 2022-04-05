@@ -16,10 +16,11 @@ class RolSeeder extends Seeder
     public function run()
     {
         $array = array(
-            array('name' => 'Coordinacion'),
-            array('name' => 'ORI'),
-            array('name' => 'DIE'),
-            array('name' => 'Decanatura'),
+            array('rol_name' => 'Coordinacion'),
+            array('rol_name' => 'ORI'),
+            array('rol_name' => 'DIE'),
+            array('rol_name' => 'Decanatura'),
+            array('rol_name' => 'Otra dependencia'),
         );
 
         DB::table('roles')->insert($array);

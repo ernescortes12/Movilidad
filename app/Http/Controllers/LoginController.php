@@ -19,5 +19,12 @@ class LoginController extends Controller
                 'message' => 'Email o contraseña incorrectos',
             ]);
         }
+        return redirect()->to('/activities');
+    }
+
+    public function destroy()
+    {
+        auth()->logout();
+        return redirect()->to('/');
     }
 }

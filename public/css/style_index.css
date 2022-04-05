@@ -35,3 +35,20 @@ form {
     border: #C3D730;
     color: white;
 }
+
+.nav-bar {
+    height: 75px;
+    background-color: #2e3e77;
+    border: #141f45;
+    border-style: solid;
+}
+
+.log-out,
+.log-out:hover,
+.log-out:focus,
+.log-out:active {
+    background-color: #C3D730;
+    border: #C3D730;
+    color: white;
+    text-decoration: none;
+}
