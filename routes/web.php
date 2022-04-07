@@ -11,4 +11,4 @@ Route::get('/activities', function () {
     return view('activities.select_activitie');
 })->middleware('auth');
 
-// 
+//  Creates

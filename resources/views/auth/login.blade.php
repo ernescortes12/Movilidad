@@ -15,7 +15,7 @@
             @enderror
         </div>
         <div class="offset-8 col-3 mt-4 mb-5">
-            <button type="submit" class="btn btn-primary rounded-pill">Ingresar</button>
+            <button type="submit" class="btn btn-primary rounded-pill border border-dark">Ingresar</button>
         </div>
     </form>
 @endsection
