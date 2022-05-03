@@ -15,20 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('email', 50)->unique();
             $table->string('password');
             $table->bigInteger('rol_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('rol_id')->references('rol_id')->on('roles')
+            $table->foreign('rol_id')->references('id')->on('roles')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
-
-        // Schema::table('users', function (Blueprint $table) {
-
-        //     // $table->foreign('rol_id')->references('id')->on("roles");
-        // });
     }
 
     /**
