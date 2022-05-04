@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inst_ent_nacs', function (Blueprint $table) {
+        Schema::create('convenio_nacs', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 30);
-            $table->string('ciudad', 120);
+            $table->date('fechaInicio');
+            $table->string('supervisor', 120);
+            $table->string('instEntNac', 200);
+            $table->string('dtpcitymun', 120);
             $table->string('nit', 12);
-            $table->bigInteger('telefono');
-            $table->string('email', 40);
+            $table->text('recursos');
+            $table->string('vigencia', 200);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inst_ent_nacs');
+        Schema::dropIfExists('convenio_nacs');
     }
 };

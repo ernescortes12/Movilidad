@@ -38,8 +38,7 @@ class LoginController extends Controller
 
         if ($about_what != ""  || $actions != "") {
             if ($actions == "registrar" && $about_what == "convenios") {
-                return redirect()->to('/activities/registro_convenios');
-                // return view('convenios.create');
+                return view('convenios.create');
             } else if ($actions == "registrar" && $about_what == "instituciones") {
                 return view('instituciones.create');
             }

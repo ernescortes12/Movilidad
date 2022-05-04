@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('convenio', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            $table->date('conv_fecha');
-            $table->string('conv_programa', 64);
-            $table->string('conv_ent_inst', 128);
-            $table->string('conv_ent_inst_nit', 10);
-            $table->text('conv_recursos');
-            $table->string('conv_cdp', 20);
-            $table->string('conv_rp', 20);
-            //Falta crear vigencia del convenio
+        Schema::create('convenio_ints', function (Blueprint $table) {
+            $table->id();
+            $table->integer('añoVin');
+            $table->string('tipo', 180);
+            $table->string('vigencia', 200);
+            $table->string('int_ent', 200);
+            $table->string('programa', 200);
+            $table->text('objeto');
+            $table->text('alcance');
+            $table->string('activo', 2);
+            $table->date('fechaInicio');
+            $table->string('vig_pro', 200);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('convenio');
+        Schema::dropIfExists('convenio_ints');
     }
 };

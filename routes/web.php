@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\InstEnt;
-use App\Http\Controllers\InstitucionController;
-use App\Http\Controllers\InstitucionEmpresaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -12,10 +11,16 @@ Route::post('/', [LoginController::class, 'consult'])->name('login.consult');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 Route::get('/activities', [LoginController::class, 'activity_view'])->middleware('auth')->name('login.activites');
 
-//  Creates
+// Creates
+// Instituciones
 Route::get('/activities/registro_instituciones', [InstEnt::class, 'create'])
-    ->name('instituciones.create')->middleware('auth');
+    ->name('instituciones.create')->middleware(['auth', 'noSelected']);
 
-Route::get('/activities/registro_convenios', function () {
-    return view('convenios.create');
-})->name('convenios.create')->middleware('auth');;
+Route::post('/activities/store_instituciones_nac', [InstEnt::class, 'store_nac'])
+    ->name('instituciones.store_nac')->middleware(['auth']);
+
+// Convenios 
+Route::get('/activities/registro_convenios', [ConvenioController::class, 'create'])
+    ->name('convenios.create')->middleware(['auth', 'noSelected']);
+
+Route::post('/activities/store_covenios', []);

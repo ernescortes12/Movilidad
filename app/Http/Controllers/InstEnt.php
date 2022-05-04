@@ -2,81 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InstEntNac;
 use Illuminate\Http\Request;
 
 class InstEnt extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('institucion.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('institucion.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store_nac(Request $request)
     {
-        //
+        // print_r($_POST);
+        $instentNact = new InstEntNac();
+        $instentNact->nombre = $request->post('instentnameNac');
+        $instentNact->ciudad = $request->post('dtpcitymunNac');
+        $instentNact->nit = $request->post('nitNac');
+        $instentNact->telefono = $request->post('telefonoNac');
+        $instentNact->email = $request->post('emailNac');
+        $instentNact->user_id = auth()->user()->id;
+
+
+        $instentNact->save();
+
+        return redirect()->route('login.activites')->with('success', 'Agregado con exito!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
