@@ -13,7 +13,7 @@ form {
 }
 
 .form-inst {
-    width: 400px;
+    width: 450px;
 }
 
 .form-conv-nac {
@@ -52,4 +52,13 @@ form {
 .open .dropdown-toggle.btn_2 {
     background-color: #dc3545;
     color: white;
+}
+
+.titles {
+    background: #A1CB21;
+    color: #fff;
+}
+
+.ulfiles {
+    list-style-type: none;
 }

@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('convenio_nacs', function (Blueprint $table) {
             $table->id();
+            // $table->string('codigo')->unique();
             $table->date('fechaInicio');
+            $table->string('tipo');
             $table->string('supervisor', 120);
             $table->string('instEntNac', 200);
-            $table->string('dtpcitymun', 120);
-            $table->string('nit', 12);
-            $table->text('recursos');
+            $table->string('dtpcitymun', 120)->nullable();
+            $table->string('nit', 12)->nullable();
+            $table->text('recursos')->nullable();
             $table->string('vigencia', 200);
+            $table->string('docSoportes')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 

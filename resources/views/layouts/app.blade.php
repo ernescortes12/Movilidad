@@ -44,7 +44,7 @@
     </div>
 </body>
 {{-- JS --}}
-<script src="{{asset('js/coord-other.js')}}"></script>
+<script src="{{asset('js/activities.js')}}"></script>
 <script src="{{asset('js/ori.js')}}"></script>
 {{-- <script src="{{asset('js/die.js')}}"></script> --}}
 </html>

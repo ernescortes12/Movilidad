@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('inst_ent_nacs', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 30);
-            $table->string('ciudad', 120);
-            $table->string('nit', 12);
-            $table->bigInteger('telefono');
-            $table->string('email', 40);
+            $table->string('nombre');
+            $table->string('ciudad')->nullable();
+            $table->string('nit', 12)->nullable();
+            $table->bigInteger('telefono')->nullable();
+            $table->string('email', 100);
+            $table->string('docSoportes')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 
