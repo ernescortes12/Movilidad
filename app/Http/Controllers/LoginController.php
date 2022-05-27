@@ -44,23 +44,17 @@ class LoginController extends Controller
 
         if ($about_what != ""  || $actions != "") {
             if ($actions == "registrar" && $about_what == "convenios") {
-                $instEntNacs = DB::select('select inst_ent_nacs.nombre from inst_ent_nacs');
-                $instEntInt = DB::select('select institucion_entidad_ints.nombre from institucion_entidad_ints');
-                return view('convenios.create', compact(['instEntNacs', 'instEntInt']));
+                return redirect('/activities/registro_convenios');
             } else if ($actions == "registrar" && $about_what == "instituciones") {
-                return view('instituciones.create');
+                return redirect('/activities/registro_instituciones');
             } else if ($actions == "consultar" && $about_what == "instituciones" && $nacoInt == "internacional") {
-                $instInts = InstitucionEntidadInt::all();
-                return view('instituciones.indexint', compact('instInts'));
+                return redirect('/activities/cons_instituciones_int');
             } else if ($actions == "consultar" && $about_what == "instituciones" && $nacoInt == "nacional") {
-                $intNacs = InstEntNac::all();
-                return view('instituciones.indexnac', compact('intNacs'));
+                return redirect('/activities/cons_instituciones_nac');
             } else if ($actions == "consultar" && $about_what == "convenios" && $nacoInt == "internacional") {
-                $convInts = ConvenioInt::all();
-                return view('convenios.indexint', compact('convInts'));
+                return redirect('/activities/cons_convenios_int');
             } else if ($actions == "consultar" && $about_what == "convenios" && $nacoInt == "nacional") {
-                $convNacs = ConvenioNac::all();
-                return view('convenios.indexnac', compact('convNacs'));
+                return redirect('/activities/cons_convenios_nac');
             }
         }
         return view('activities.select_activities');

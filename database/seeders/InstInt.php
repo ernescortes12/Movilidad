@@ -16,11 +16,11 @@ class InstInt extends Seeder
     public function run()
     {
         $array = array(
-            array('nombre' => 'Universidad de Harvard', 'pais' => 'Estados Unidos', 'ciudad' => 'Massachusetts', 'email' => 'ithelp@harvard.edu'),
-            array('nombre' => 'Universidad de Stanford', 'pais' => 'Estados Unidos', 'ciudad' => 'California', 'email' => 'university@stanford.edu'),
-            array('nombre' => 'Universidad de Barcelona', 'pais' => 'España', 'ciudad' => 'Barcelona', 'email' => 'ubarcelona@ubar.edu'),
-            array('nombre' => 'Universidad de Cambridge', 'pais' => 'Reino Unido', 'ciudad' => 'Cambridge', 'email' => 'university@cam.edu'),
-            array('nombre' => 'Universidad de Chicago', 'pais' => 'Estados Unidos', 'ciudad' => 'Chicago', 'email' => 'university@chi.edu'),
+            array('nombre' => 'Universidad de Harvard', 'pais' => 'Estados Unidos', 'ciudad' => 'Massachusetts', 'email' => 'ithelp@harvard.edu', 'user_id' => '3'),
+            array('nombre' => 'Universidad de Stanford', 'pais' => 'Estados Unidos', 'ciudad' => 'California', 'email' => 'university@stanford.edu', 'user_id' => '3'),
+            array('nombre' => 'Universidad de Barcelona', 'pais' => 'España', 'ciudad' => 'Barcelona', 'email' => 'ubarcelona@ubar.edu', 'user_id' => '3'),
+            array('nombre' => 'Universidad de Cambridge', 'pais' => 'Reino Unido', 'ciudad' => 'Cambridge', 'email' => 'university@cam.edu', 'user_id' => '3'),
+            array('nombre' => 'Universidad de Chicago', 'pais' => 'Estados Unidos', 'ciudad' => 'Chicago', 'email' => 'university@chi.edu', 'user_id' => '3'),
         );
 
         DB::table('institucion_entidad_ints')->insert($array);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('convenio_nacs', function (Blueprint $table) {
             $table->id();
-            // $table->string('codigo')->unique();
+            $table->string('codigo')->unique();
             $table->date('fechaInicio');
             $table->string('tipo');
             $table->string('supervisor', 120);
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('recursos')->nullable();
             $table->string('vigencia', 200);
             $table->string('docSoportes')->nullable();
+            $table->tinyInteger('estado')->default(1);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 

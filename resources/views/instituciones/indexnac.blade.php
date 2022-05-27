@@ -30,7 +30,6 @@
                         <tbody>
                             @foreach ($intNacs as $item)
                                 <tr>
-                                    
                                     <td> {{ $item->nombre }} </td>
                                     <td> {{ $item->ciudad }} </td>
                                     <td> {{ $item->nit }} </td>
@@ -38,12 +37,13 @@
                                     <td> {{ $item->email }} </td>
                                     @if (auth()->user()->rol_id == 2)
                                         <td>
-                                            <form action="" method="POST">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <a class="btn btn-primary w-100" href="">Editar</a>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a class="btn btn-primary w-100" href="{{ route('institucion_nac.edit', $item->id) }}">Editar</a>
                                                 </div>
+                                            </div>
+                                            <form action="{{ route('institucion_nac.destroy', $item->id) }}" method="POST">
+                                                @csrf
                                                 <div class="row mt-1">
                                                     <div class="col">
                                                         <button type="submit" class="btn btn-danger w-100">Delete</button>
@@ -53,7 +53,7 @@
                                         </td>
                                     @endif
                                     <td> 
-                                        @foreach (json_decode($item->docSoportes) as $file)
+                                        @foreach (explode(',',$item->docSoportes) as $file)
                                             <ul class="ulfiles">
                                                 <li><a href="{{ url('/download_ints_nac', $file) }}">{{$file}}</a></li>
                                             </ul>
@@ -67,9 +67,9 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4 mb-3">
+    <div class="row mt-4 mb-4">
         <div class="offset-1 col-2">
-            <a  href="{{ route('login.activites') }}">Regresar</a>
+            <a  href="{{ route('login.activites') }}" class="text-danger text-decoration-none">Regresar</a>
         </div>
     </div>
 </form>

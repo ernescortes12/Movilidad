@@ -4,63 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\ConvenioInt;
 use App\Models\ConvenioNac;
+use App\Models\InstEntNac;
+use App\Models\InstitucionEntidadInt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ConvenioController extends Controller
 {
-
-    public function index()
+    // Internacional
+    public function index_int()
     {
-        //
+        $convInts = ConvenioInt::where('estado', 1)->get();
+        return view('convenios.indexint', compact('convInts'));
     }
 
 
     public function create()
     {
-        return view('convenios.create');
-    }
-
-
-    public function store_nac(Request $request)
-    {
-        $request->validate([
-            'conv_fechaInicioNac' => 'required',
-            'conv_tipoNac' => 'required',
-            'conv_superNac' => 'required',
-            'con_instEntNac' => 'required',
-            'conv_vigenciaNac' => 'required',
-        ]);
-
-        $files = [];
-
-        if ($request->hasFile('conv_docsoporteNac')) {
-            foreach ($request->file('conv_docsoporteNac') as $file) {
-                $name = time() . "_" . $file->getClientOriginalName();
-                $file->move(public_path('files/conveniosNac'), $name);
-                $files[] = $name;
-            }
-        }
-
-        // $codigos = DB::select('select convenio_nacs.codigo from convenio_nacs');
-        // $x = 0
-        // while($x<)
-
-        $convNac = new ConvenioNac();
-        $convNac->fechaInicio = $request->post('conv_fechaInicioNac');
-        $convNac->tipo = $request->post('conv_tipoNac');
-        $convNac->supervisor = $request->post('conv_superNac');
-        $convNac->instEntNac = $request->post('con_instEntNac');
-        $convNac->dtpcitymun = $request->post('conv_dtpcitymunNac');
-        $convNac->nit = $request->post('conv_nitNac');
-        $convNac->recursos = $request->post('conv_recursosNac');
-        $convNac->vigencia = $request->post('conv_vigenciaNac');
-        $convNac->docSoportes = json_encode($files);
-        $convNac->user_id = auth()->user()->id;
-
-        $convNac->save();
-
-        return redirect()->route('login.activites')->with('success', 'Agregado con éxito!');
+        $instEntNacs = InstEntNac::where('estado', 1)->get();
+        $instEntInt = InstitucionEntidadInt::where('estado', 1)->get();
+        return view('convenios.create', compact(['instEntNacs', 'instEntInt']));
     }
 
 
@@ -163,25 +126,149 @@ class ConvenioController extends Controller
             foreach ($request->post('conv_intentInt') as $instEnts) {
                 $instSelected[] = $instEnts;
             }
-            // $instEnts = implode(', ', $request->post('conv_intentInt'));
+        }
+
+        // Creando el código
+        $c_convs = ConvenioInt::get('codigo');
+
+        if ($c_convs->isEmpty()) {
+            $codigo = [311, 1000];
+            $convInt->codigo = implode('-', $codigo);
+        } else {
+            $last = $c_convs->last();
+            $codigo = explode('-', $last->codigo);
+            $codigo[1] += 1;
+            $convInt->codigo = implode('-', $codigo);
         }
 
         $convInt->añoVin = $request->post('conv_añovinInt');
         $convInt->tipo = $request->post('conv_tipoInt');
         $convInt->vigencia = $request->post('con_vigenciaInt');
-        $convInt->int_ent = json_encode($instSelected);
+        $convInt->int_ent = implode(',', $instSelected);
         $convInt->programa = $request->post('conv_programInt');
         $convInt->objeto = $request->post('conv_objetoInt');
         $convInt->alcance = $request->post('conv_alcanceInt');
         $convInt->activo = $request->post('con_activoNoInt');
         $convInt->fechaInicio = $request->post('conv_datestartInt');
         $convInt->vig_pro = $request->post('con_vigproInt');
-        $convInt->nombProsesion = json_encode($files_nomPos);
-        $convInt->certFacultad = json_encode($files_certFac);
-        $convInt->actaSeguimiento = json_encode($files_actaDoc);
+        $convInt->nombProsesion = implode(',', $files_nomPos);
+        $convInt->certFacultad = implode(',', $files_certFac);
+        $convInt->actaSeguimiento = implode(',', $files_actaDoc);
         $convInt->user_id = auth()->user()->id;
 
         $convInt->save();
+
+        return redirect()->route('login.activites')->with('success', 'Agregado con éxito!');
+    }
+
+
+    public function download_int($file)
+    {
+        return response()->download(public_path('files/conveniosInt/' . $file));
+    }
+
+    public function edit_int($conv_id)
+    {
+        $instEntInt = InstitucionEntidadInt::where('estado', 1)->get();
+        $convs = ConvenioInt::findOrFail($conv_id);
+        return view('convenios.editint', compact(['instEntInt', 'convs']));
+    }
+
+
+    public function update_int(Request $request, $conv_id)
+    {
+        $request->validate([
+            'conv_añovinInt' => 'required',
+            'conv_tipoInt' => 'required',
+            'con_vigenciaInt' => 'required',
+            'conv_intentInt' => 'required',
+            'conv_programInt' => 'required',
+            'con_activoNoInt' => 'required',
+            'conv_datestartInt' => 'required',
+            'con_vigproInt' => 'required',
+        ]);
+
+        $conv = ConvenioInt::findOrFail($conv_id);
+        $conv->añoVin = $request->conv_añovinInt;
+        $conv->tipo = $request->conv_tipoInt;
+        $conv->vigencia = $request->con_vigenciaInt;
+        $conv->int_ent = implode(',', $request->conv_intentInt);
+        $conv->programa = $request->conv_programInt;
+        $conv->objeto = $request->conv_objetoInt;
+        $conv->alcance = $request->conv_alcanceInt;
+        $conv->activo = $request->con_activoNoInt;
+        $conv->fechaInicio = $request->conv_datestartInt;
+        $conv->vig_pro = $request->con_vigproInt;
+        $conv->save();
+
+        return redirect('/activities/cons_convenios_int');
+    }
+
+
+    public function destroy_int($conv_id)
+    {
+        $conv = ConvenioInt::findOrFail($conv_id);
+        $conv->estado = 0;
+        $conv->save();
+        return redirect('/activities/cons_convenios_int');
+    }
+
+
+    // Nacional
+    public function index_nac()
+    {
+        $convNacs = ConvenioNac::where('estado', 1)->get();
+        return view('convenios.indexnac', compact('convNacs'));
+    }
+
+    public function store_nac(Request $request)
+    {
+        $request->validate([
+            'conv_fechaInicioNac' => 'required',
+            'conv_tipoNac' => 'required',
+            'conv_superNac' => 'required',
+            'con_instEntNac' => 'required',
+            'conv_vigenciaNac' => 'required',
+            'conv_docsoporteNac' => 'required'
+        ]);
+
+        $files = [];
+
+        if ($request->hasFile('conv_docsoporteNac')) {
+            foreach ($request->file('conv_docsoporteNac') as $file) {
+                $name = time() . "_" . $file->getClientOriginalName();
+                $file->move(public_path('files/conveniosNac'), $name);
+                $files[] = $name;
+            }
+        }
+
+        $c_convs = ConvenioNac::get('codigo');
+
+        $convNac = new ConvenioNac();
+
+        if ($c_convs->isEmpty()) {
+            $codigo = [310, 1000];
+            $convNac->codigo = implode('-', $codigo);
+        } else {
+            $last = $c_convs->last();
+            $codigo = explode('-', $last->codigo);
+            $codigo[1] += 1;
+            $convNac->codigo = implode('-', $codigo);
+        }
+
+
+        $convNac->fechaInicio = $request->post('conv_fechaInicioNac');
+        $convNac->tipo = $request->post('conv_tipoNac');
+        $convNac->supervisor = $request->post('conv_superNac');
+        $convNac->instEntNac = $request->post('con_instEntNac');
+        $convNac->dtpcitymun = $request->post('conv_dtpcitymunNac');
+        $convNac->nit = $request->post('conv_nitNac');
+        $convNac->recursos = $request->post('conv_recursosNac');
+        $convNac->vigencia = $request->post('conv_vigenciaNac');
+        $convNac->docSoportes = implode(',', $files);
+        $convNac->user_id = auth()->user()->id;
+
+        $convNac->save();
 
         return redirect()->route('login.activites')->with('success', 'Agregado con éxito!');
     }
@@ -192,32 +279,44 @@ class ConvenioController extends Controller
         return response()->download(public_path('files/conveniosNac/' . $file));
     }
 
-    public function download_int($file)
+
+    public function edit_nac($conv_id)
     {
-        return response()->download(public_path('files/conveniosInt/' . $file));
+        $instEntNacs = InstEntNac::where('estado', 1)->get();
+        $convs = ConvenioNac::findOrFail($conv_id);
+        return view('convenios.editnac', compact(['instEntNacs', 'convs']));
     }
 
 
-    public function show($id)
+    public function update_nac(Request $request, $conv_id)
     {
-        //
+        $request->validate([
+            'conv_fechaInicioNac' => 'required',
+            'conv_tipoNac' => 'required',
+            'conv_superNac' => 'required',
+            'con_instEntNac' => 'required',
+            'conv_vigenciaNac' => 'required',
+        ]);
+
+        $conv = ConvenioNac::findOrFail($conv_id);
+        $conv->fechaInicio = $request->conv_fechaInicioNac;
+        $conv->tipo = $request->conv_tipoNac;
+        $conv->supervisor = $request->conv_superNac;
+        $conv->instEntNac = $request->con_instEntNac;
+        $conv->dtpcitymun = $request->conv_dtpcitymunNac;
+        $conv->nit = $request->conv_nitNac;
+        $conv->recursos = $request->conv_recursosNac;
+        $conv->vigencia = $request->conv_vigenciaNac;
+        $conv->save();
+        return redirect('/activities/cons_convenios_nac');
     }
 
 
-    public function edit($id)
+    public function destroy_nac($conv_id)
     {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
+        $convs = ConvenioNac::findOrFail($conv_id);
+        $convs->estado = 0;
+        $convs->save();
+        return redirect('/activities/cons_convenios_nac');
     }
 }

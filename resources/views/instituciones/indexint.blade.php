@@ -36,13 +36,13 @@
                                         <td> {{ $item->email }} </td>
                                         @if (auth()->user()->rol_id == 3)
                                             <td>
-                                                <form action="" method="POST">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <a class="btn btn-primary w-100" href="">Editar</a>
-                                                        </div>
-                                                        
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a class="btn btn-primary w-100" href="{{ route('institucion_int.edit', $item->id) }}">Editar</a>
                                                     </div>
+                                                </div>
+                                                <form action="{{ route('institucion_int.destroy', $item->id) }}" method="POST">
+                                                    @csrf    
                                                     <div class="row mt-1">
                                                         <div class="col">
                                                             <button type="submit" class="btn btn-danger w-100">Delete</button>
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3 mb-3">
+        <div class="row mt-3 mb-4">
             <div class="offset-1 col-2">
                 <a  href="{{ route('login.activites') }}">Regresar</a>
             </div>

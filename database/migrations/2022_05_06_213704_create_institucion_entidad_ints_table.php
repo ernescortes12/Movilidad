@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('telefono')->nullable();
             $table->string('email');
+            $table->tinyInteger('estado')->default(1);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 

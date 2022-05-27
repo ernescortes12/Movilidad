@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('convenio_ints', function (Blueprint $table) {
             $table->id();
-            // $table->string('codigo')->unique();
+            $table->string('codigo')->unique();
             $table->integer('añoVin');
             $table->string('tipo', 180);
             $table->string('vigencia', 200);
@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('garantias')->nullable(); //si
             $table->string('actaSeguimiento')->nullable(); //si
             $table->string('resnombSupervisor');
+            $table->tinyInteger('estado')->default(1);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 

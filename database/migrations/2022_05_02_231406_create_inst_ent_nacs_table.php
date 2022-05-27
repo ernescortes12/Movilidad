@@ -21,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('telefono')->nullable();
             $table->string('email', 100);
             $table->string('docSoportes')->nullable();
+            $table->tinyInteger('estado')->default(1);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 

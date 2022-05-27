@@ -16,12 +16,14 @@
                     <table id="queryTable"> 
                         <thead>
                             <tr>
-                                <th scope="col">Fecha de Inicio</th>
-                                <th scope="col">Vigencia</th> 
-                                <th scope="col">Tipo</th>
+                                <th scope="col">Código</th>
                                 <th scope="col">Supervisor</th>
                                 <th scope="col">Institución o Entidad</th>
                                 <th scope="col">Dpto/Cd/Mpio</th>
+                                <th scope="col">Fecha de Inicio</th>
+                                <th scope="col">Vigencia</th> 
+                                <th scope="col">Tipo</th>
+                                
                                 @if (auth()->user()->rol_id == 2)
                                     <th scope="col">Acciones</th>
                                 @endif
@@ -34,34 +36,33 @@
                         <tbody>
                             @foreach ($convNacs as $item)
                                 <tr>
-                                    <td> {{ $item->fechaInicio }} </td>
-                                    <td> {{ $item->vigencia }} </td>
-                                    <td> {{ $item->tipo }} </td>
+                                    <td> {{ $item->codigo }}</td>
                                     <td> {{ $item->supervisor }} </td>
                                     <td> {{ $item->instEntNac }} </td>
                                     <td> {{ $item->dtpcitymun }} </td>
-                                    
+                                    <td> {{ $item->fechaInicio }} </td>
+                                    <td> {{ $item->vigencia }} </td>
+                                    <td> {{ $item->tipo }} </td>
                                     @if (auth()->user()->rol_id == 2)
-                                    <td>
-                                        <form action="" method="POST">
+                                        <td>
                                             <div class="row">
                                                 <div class="col">
-                                                    <a class="btn btn-primary  w-100" href="">Editar</a>
+                                                    <a class="btn btn-primary  w-100" href="{{ route('convenios_nac.edit', $item->id) }}">Editar</a>
                                                 </div>
                                             </div>
-                                            <div class="row mt-1">
-                                                <div class="col">
-                                                    <button type="submit" class="btn btn-danger w-100">Delete</button>
+                                            <form action="{{ route('convenio_nac.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                <div class="row mt-1">
+                                                    <div class="col">
+                                                        <button type="submit" class="btn btn-danger w-100">Delete</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                    </td>
+                                            </form>
+                                        </td>
                                     @endif                                    
                                     <td> 
-                                        @foreach (json_decode($item->docSoportes) as $file)
-                                            <ul class="ulfiles">
-                                                <li><a href="{{ url('/download_conv_nac', $file) }}">{{$file}}</a></li>
-                                            </ul>
+                                        @foreach (explode(",", $item->docSoportes) as $file)
+                                            <br> - <a href="{{ url('/download_conv_nac', $file) }}">{{$file}}</a>
                                         @endforeach 
                                     </td>
                                     <td> {{ $item->nit }} </td>
@@ -74,9 +75,9 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4 mb-3">
+    <div class="row mt-4 mb-4">
         <div class="offset-1 col-2">
-            <a  href="{{ route('login.activites') }}">Regresar</a>
+            <a  href="{{ route('login.activites') }}" class="text-danger text-decoration-none">Regresar</a>
         </div>
     </div>
 </form>

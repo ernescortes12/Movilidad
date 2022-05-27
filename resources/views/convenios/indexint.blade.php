@@ -2,7 +2,7 @@
 @section('title', 'Convenios Internacionales')
 
 @section('convInt_read_cont')
-<form action="" class="border border-2 rounded-3 shadow-lg" style="width: 90%;">
+<form action="" class="border border-2 rounded-3 shadow-lg" style="width: 84%;">
     @csrf
     <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
@@ -16,6 +16,7 @@
                     <table id="queryTable"> 
                         <thead>
                             <tr>
+                                <th scope="col">Código</th>
                                 <th scope="col">Año de vinculación</th>
                                 <th scope="col">Vigencia</th>
                                 <th scope="col">Tipo</th> 
@@ -42,11 +43,12 @@
                         <tbody>
                             @foreach ($convInts as $item)
                                 <tr>
+                                    <td> {{ $item->codigo }}</td>
                                     <td> {{ $item->añoVin }} </td>
                                     <td> {{ $item->vigencia }} </td>
                                     <td> {{ $item->tipo }} </td>
                                     <td> 
-                                        @foreach (json_decode($item->int_ent)  as $inst)
+                                        @foreach (explode(",",$item->int_ent)  as $inst)
                                             - {{$inst}}<br>
                                         @endforeach
                                     </td>
@@ -55,12 +57,13 @@
                                     <td> {{ $item->fechaInicio }} </td>
                                     <td> {{ $item->vig_pro }} </td>
                                     <td>
-                                        <form action="" method="POST">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a class="btn btn-primary  w-100" href="">Editar</a>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a class="btn btn-primary  w-100" href="{{ route('convenios_int.edit', $item->id) }}">Editar</a>
                                             </div>
+                                        </div>
+                                        <form action="{{route('convenio_int.destroy', $item->id)}}" method="POST">
+                                            @csrf
                                             <div class="row mt-1">
                                                 <div class="col">
                                                     <button type="submit" class="btn btn-danger w-100">Delete</button>
@@ -68,17 +71,17 @@
                                             </div>
                                         </form>
                                     </td>
-                                    <td> <br> - {{ $item->objeto }} </td>
-                                    <td> <br> - {{ $item->alcance }} </td>
+                                    <td> <br>{{ $item->objeto }} </td>
+                                    <td> <br>{{ $item->alcance }} </td>
                                     <td> <br> - <a href="{{ url('/download_conv_int', $item->docSupervisor) }}">{{ $item->docSupervisor }}</a></td>
                                     <td> 
-                                        @foreach (json_decode($item->nombProsesion) as $nP)
+                                        @foreach (explode(",",$item->nombProsesion) as $nP)
                                             <br> - <a href="{{ url('/download_conv_int', $nP) }}">{{ $nP }}</a>
                                         @endforeach
                                     </td>
                                     <td> <br> - <a href="{{ url('/download_conv_int', $item->constRegistro) }}">{{ $item->constRegistro }}</a></td>
                                     <td>
-                                        @foreach (json_decode($item->certFacultad) as $cert)
+                                        @foreach (explode(",",$item->certFacultad) as $cert)
                                             <br> - <a href="{{ url('/download_conv_int', $cert) }}">{{ $cert }}</a>
                                         @endforeach
                                     </td>
@@ -86,20 +89,11 @@
                                     <td> <br> - <a href="{{ url('/download_conv_int', $item->infEstudios) }}">{{ $item->minuta }}</a></td>
                                     <td> <br> - <a href="{{ url('/download_conv_int', $item->garantias) }}">{{ $item->garantias }}</a></td>
                                     <td>
-                                        @foreach (json_decode($item->actaSeguimiento ) as $acta)
+                                        @foreach (explode(",",$item->actaSeguimiento ) as $acta)
                                             <br> - <a href="{{ url('/download_conv_int', $acta) }}">{{ $acta }}</a>
                                         @endforeach
                                     </td>
                                     <td> <br> - <a href="{{ url('/download_conv_int', $item->resnombSupervisor) }}">{{ $item->resnombSupervisor }}</a></td>
-                                    
-                                    {{-- <td> 
-                                        @foreach (json_decode($item->docSoportes) as $file)
-                                            <ul class="ulfiles">
-                                                <li><a href="{{ url('/download_conv_nac', $file) }}">{{$file}}</a></li>
-                                            </ul>
-                                        @endforeach 
-                                    </td> --}}
-                                    
                                 </tr>
                             @endforeach
                         </tbody>
@@ -108,9 +102,9 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4 mb-3">
+    <div class="row mt-4 mb-4">
         <div class="offset-1 col-2">
-            <a  href="{{ route('login.activites') }}">Regresar</a>
+            <a  href="{{ route('login.activites') }}" class="text-danger text-decoration-none">Regresar</a>
         </div>
     </div>
 </form>
