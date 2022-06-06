@@ -1,7 +1,7 @@
 @extends('layouts.inst_conv_mov')
 @section('title', 'Registro Instituciones')
 
-@section('inst_create_cont')
+@section('content')
 <form method="POST" action="{{ route('institucion_nac.update', $instNac) }}" class="form-inst border border-2 rounded-3 shadow-lg">
     @csrf
     @method('PUT')

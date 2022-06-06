@@ -41,7 +41,8 @@ class InstEntController extends Controller
 
         $instentInt->save();
 
-        return redirect()->route('login.activites')->with('message', 'Institución creada con éxito!');
+        return redirect()->route('login.activites')
+            ->with('success', 'Institución/Entidad creada correctamente!');
     }
 
 
@@ -70,7 +71,8 @@ class InstEntController extends Controller
 
         $inst->save();
 
-        return redirect('/activities/cons_instituciones_int');
+        return redirect('/activities/cons_instituciones_int')
+            ->with('success', 'Institución/Entidad actualizada correctamente!');
     }
 
 
@@ -79,7 +81,8 @@ class InstEntController extends Controller
         $inst = InstitucionEntidadInt::findOrFail($id);
         $inst->estado = 0;
         $inst->save();
-        return redirect('/activities/cons_instituciones_int');
+        return redirect('/activities/cons_instituciones_int')
+            ->with('success', 'Institución/Entidad con código ' . $inst->id . ' eliminada correctamente!');
     }
 
     //Nacional
@@ -99,6 +102,8 @@ class InstEntController extends Controller
             'inst_docsoporteNac' => 'required|array',
         ]);
 
+        // Guardar multiples archivos
+        // Para acceder a estos se debe utilizar explode (método inverso al implode)
         $files = [];
         if ($request->hasFile('inst_docsoporteNac')) {
             foreach ($request->file('inst_docsoporteNac') as $file) {
@@ -120,7 +125,7 @@ class InstEntController extends Controller
 
         $instentNact->save();
 
-        return redirect()->route('login.activites')->with('success', 'Agregado con exito!');
+        return redirect()->route('login.activites')->with('success', 'Institución/Entidad creada correctamente!');
     }
 
 
@@ -154,7 +159,8 @@ class InstEntController extends Controller
 
         $inst->save();
 
-        return redirect('/activities/cons_instituciones_nac');
+        return redirect('/activities/cons_instituciones_nac')
+            ->with('success', 'Institución/Entidad editada correctamente!');
     }
 
 
@@ -163,6 +169,7 @@ class InstEntController extends Controller
         $inst = InstEntNac::findOrFail($id);
         $inst->estado = 0;
         $inst->save();
-        return redirect('/activities/cons_instituciones_nac');
+        return redirect('/activities/cons_instituciones_nac')
+            ->with('success', 'Institución/Entidad con código ' . $inst->id . ' eliminada correctamente!');
     }
 }

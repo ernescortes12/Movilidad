@@ -16,7 +16,7 @@
 </head>
 
 
-<body style="background: url('{{asset('images/index/background.jpeg')}}')">
+<body style="background: url('{{asset('images/index/background.jpeg')}}')" onload="onloadLogFuncs();" >
     <div class="container-fluid b-g">
         <div class="row ">
             <div class="col">
@@ -42,9 +42,19 @@
         </div>
         </div>
     </div>
+    <script src="{{asset('js/index.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                'title': 'Felicidades',
+                'text': '{{$message}}',
+                'icon': 'success'
+            })
+        </script>
+    @endif
 </body>
 {{-- JS --}}
-<script src="{{asset('js/activities.js')}}"></script>
-<script src="{{asset('js/ori.js')}}"></script>
+
 {{-- <script src="{{asset('js/die.js')}}"></script> --}}
 </html>

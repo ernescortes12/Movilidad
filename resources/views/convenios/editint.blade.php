@@ -1,7 +1,7 @@
 @extends('layouts.inst_conv_mov')
 @section('title', 'Edición Convenios')
 
-@section('conv_create_cont')
+@section('content')
     <form method="POST" action="{{ route('convenios_int.update', $convs) }}" class="form-conv-int border border-2 rounded-3 shadow-lg m-5"  enctype="multipart/form-data">
         @csrf
         @method('PUT')

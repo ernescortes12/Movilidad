@@ -31,16 +31,8 @@
             <div class="col">
                 <div class="abs-center">
                     @if (auth()->check())
-                        {{-- Registro Convenios --}}
-                        @yield('conv_create_cont')
-                        {{-- Registro Instituciones --}}
-                        @yield('inst_create_cont')
-                        {{-- Consultar Convenios --}}
-                        @yield('convNac_read_cont')
-                        @yield('convInt_read_cont')
-                        {{-- Consultar Instituciones --}}
-                        @yield('intInt_read_cont')
-                        @yield('instNac_read_cont')
+                    
+                        @yield('content')
                     @else
                         <div class="abs-center">
                             @yield('login')    
@@ -50,7 +42,18 @@
             </div>
         </div>
     </div>
-    @yield('js')
+    <script src="{{ asset('js/dTables.js') }}"></script>
+    <script src="{{asset('js/index.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                'title': 'Felicidades',
+                'text': '{{$message}}',
+                'icon': 'success'
+            })
+        </script>
+    @endif
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
 </body>
-<script src="{{ asset('js/dTables.js') }}"></script>
 </html>

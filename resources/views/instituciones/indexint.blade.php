@@ -1,7 +1,7 @@
 @extends('layouts.inst_conv_mov')
 @section('title', 'Instituciones Internacionales')
 
-@section('intInt_read_cont')
+@section('content')
     <form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 75%">
         @csrf
         <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
@@ -16,6 +16,7 @@
                         <table id="queryTable">
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">País</th>
                                     <th scope="col">Ciudad</th>
@@ -29,6 +30,7 @@
                             <tbody>
                                 @foreach ($instInts as $item)
                                     <tr>
+                                        <td class="text-center"> {{ $item->id }} </td>
                                         <td> {{ $item->nombre }} </td>
                                         <td> {{ $item->pais }} </td>
                                         <td> {{ $item->ciudad }} </td>
@@ -41,11 +43,11 @@
                                                         <a class="btn btn-primary w-100" href="{{ route('institucion_int.edit', $item->id) }}">Editar</a>
                                                     </div>
                                                 </div>
-                                                <form action="{{ route('institucion_int.destroy', $item->id) }}" method="POST">
+                                                <form action="{{ route('institucion_int.destroy', $item->id) }}" method="POST" class="form-delete">
                                                     @csrf    
                                                     <div class="row mt-1">
                                                         <div class="col">
-                                                            <button type="submit" class="btn btn-danger w-100">Delete</button>
+                                                            <button type="submit" class="btn btn-outline-danger w-100">Delete</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -61,7 +63,7 @@
         </div>
         <div class="row mt-3 mb-4">
             <div class="offset-1 col-2">
-                <a  href="{{ route('login.activites') }}">Regresar</a>
+                <a href="{{ route('login.activites') }}" class="btn btn-outline-success text-decoration-none">Regresar</a>
             </div>
         </div>
     </form>

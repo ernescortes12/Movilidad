@@ -4,6 +4,14 @@ use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\InstEntController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MovilidadIntEnt;
+use App\Http\Controllers\MovilidadIntEntController;
+use App\Http\Controllers\MovilidadIntSal;
+use App\Http\Controllers\MovilidadIntSalController;
+use App\Http\Controllers\MovilidadNacEnt;
+use App\Http\Controllers\MovilidadNacEntController;
+use App\Http\Controllers\MovilidadNacSal;
+use App\Http\Controllers\MovilidadNacSalController;
 
 // Login Routes
 Route::get('/', [LoginController::class, 'show'])->name('login.index');
@@ -31,6 +39,37 @@ Route::post('/store_convenios_nac', [ConvenioController::class, 'store_nac'])
 
 Route::post('/store_convenios_int', [ConvenioController::class, 'store_int'])
     ->name('convenios.store_int')->middleware(['auth']);
+
+// Movilidades
+// Nacional
+// Entrante
+Route::get('/activities/registro_movilidad_nac/entrante', [MovilidadNacEntController::class, 'create'])
+    ->name('movilidadNacEnt.create');
+
+Route::post('/store_movilidad_nac_ent', [MovilidadNacEntController::class, 'store'])
+    ->name('movilidadNacEnt.store')->middleware(['auth']);
+
+// Saliente
+Route::get('/activities/registro_movilidad_nac/saliente', [MovilidadNacSalController::class, 'create'])
+    ->name('movilidadNacSal.create');
+
+Route::post('/store_movilidad_nac_sal', [MovilidadNacSalController::class, 'store'])
+    ->name('movilidadNacSal.store')->middleware(['auth']);
+
+// Internacional
+// Entrante
+Route::get('/activities/registro_movilidad_int/entrante', [MovilidadIntEntController::class, 'create'])
+    ->name('movilidadIntEnt.create');
+
+Route::post('/store_movilidad_int_ent', [MovilidadIntEntController::class, 'store'])
+    ->name('movilidadIntEnt.store')->middleware(['auth']);
+
+// Saliente
+Route::get('/activities/registro_movilidad_int/saliente', [MovilidadIntSalController::class, 'create'])
+    ->name('movilidadIntSal.create');
+
+Route::post('/store_movilidad_int_sal', [MovilidadIntSalController::class, 'store'])
+    ->name('movilidadIntSal.store')->middleware(['auth']);
 
 // Read
 // Instituciones

@@ -1,7 +1,7 @@
 @extends('layouts.inst_conv_mov')
 @section('title', 'Registro Convenios')
 
-@section('conv_create_cont')
+@section('content')
 @if (auth()->user()->rol_id == "2")
     <form method="POST" class="form-conv-nac border border-2 rounded-3 shadow-lg mt-5 mb-5" action="{{ route('convenios.store_nac') }}" enctype="multipart/form-data">
         @csrf

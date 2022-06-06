@@ -23,7 +23,8 @@ class ConvenioController extends Controller
     {
         $instEntNacs = InstEntNac::where('estado', 1)->get();
         $instEntInt = InstitucionEntidadInt::where('estado', 1)->get();
-        return view('convenios.create', compact(['instEntNacs', 'instEntInt']));
+        return view('convenios.create', compact(['instEntNacs', 'instEntInt']))
+            ->with('success', 'Institución/Entidad creada correctamente!');
     }
 
 
@@ -90,7 +91,8 @@ class ConvenioController extends Controller
         }
 
 
-        // Multiples
+        // Guardar multiples archivos
+        // Para acceder a estos se debe utilizar explode (método inverso al implode)
 
         $files_nomPos = [];
         $files_certFac = [];
@@ -120,7 +122,7 @@ class ConvenioController extends Controller
             }
         }
 
-        // Multiple institutes selected
+        // Multiple institutes select
         $instSelected = [];
         if ($request->post('conv_intentInt') != null) {
             foreach ($request->post('conv_intentInt') as $instEnts) {
@@ -158,7 +160,8 @@ class ConvenioController extends Controller
 
         $convInt->save();
 
-        return redirect()->route('login.activites')->with('success', 'Agregado con éxito!');
+        return redirect()->route('login.activites')
+            ->with('success', 'Convenio con código ' . implode("-", $codigo) . ' creado correctamente!');
     }
 
 
@@ -201,7 +204,8 @@ class ConvenioController extends Controller
         $conv->vig_pro = $request->con_vigproInt;
         $conv->save();
 
-        return redirect('/activities/cons_convenios_int');
+        return redirect('/activities/cons_convenios_int')
+            ->with('success', 'Convenio actualizado correctamente!');
     }
 
 
@@ -210,7 +214,8 @@ class ConvenioController extends Controller
         $conv = ConvenioInt::findOrFail($conv_id);
         $conv->estado = 0;
         $conv->save();
-        return redirect('/activities/cons_convenios_int');
+        return redirect('/activities/cons_convenios_int')
+            ->with('success', 'Convenio con código ' . $conv->codigo . ' eliminado correctamente!');
     }
 
 
@@ -270,7 +275,8 @@ class ConvenioController extends Controller
 
         $convNac->save();
 
-        return redirect()->route('login.activites')->with('success', 'Agregado con éxito!');
+        return redirect()->route('login.activites')
+            ->with('success', 'Convenio con código ' . implode("-", $codigo) . ' creado correctamente!');
     }
 
 
@@ -308,15 +314,17 @@ class ConvenioController extends Controller
         $conv->recursos = $request->conv_recursosNac;
         $conv->vigencia = $request->conv_vigenciaNac;
         $conv->save();
-        return redirect('/activities/cons_convenios_nac');
+        return redirect('/activities/cons_convenios_nac')
+            ->with('success', 'Convenio actualizado correctamente!');
     }
 
 
     public function destroy_nac($conv_id)
     {
-        $convs = ConvenioNac::findOrFail($conv_id);
-        $convs->estado = 0;
-        $convs->save();
-        return redirect('/activities/cons_convenios_nac');
+        $conv = ConvenioNac::findOrFail($conv_id);
+        $conv->estado = 0;
+        $conv->save();
+        return redirect('/activities/cons_convenios_nac')
+            ->with('success', 'Convenio con código ' . $conv->codigo . ' eliminado correctamente!');
     }
 }
