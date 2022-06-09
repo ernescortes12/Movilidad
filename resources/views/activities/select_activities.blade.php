@@ -19,10 +19,10 @@
             </div>
             <div class="offset-1 col-10 mt-1">
                 <label for="" class="mb-1">Acción que desea realizar: </label>
-                <select class="form-select border-dark" name="c_o_actions" id="c_o_actions" onchange="loadActions()">
+                <select class="form-select border-dark" name="c_o_actions" id="c_o_actions" onchange="loadActions();">
                     <option value="">-- Seleccione una opción --</option>
-                    <option value="1">Registrar</option>
-                    <option value="2">Consultar</option>
+                    <option value="registrar">Registrar</option>
+                    <option value="consultar">Consultar</option>
                 </select>
             </div>
             <div class="offset-1 col-10 mt-4">
@@ -41,13 +41,17 @@
             </div>
             <div class="offset-1 col-10 mt-4">
                 <label for="" class="mb-1">Entrante o Saliente: </label>
-                {{-- Para modificar atributo disable ver activities.js en la carpeta public --}}
-                {{-- atributo title mediante onload y se encuentra en layouts.app --}}
                 <select class="form-select border border-dark"  name="c_o_entSal" id="c_o_entSal">
                     <option value="">-- Seleccione una opción --</option>
                     <option value="entrante">Entrante</option>
                     <option value="saliente">Saliente</option>
                 </select>
+            </div>
+            {{-- Quitar cuando se realice las otra partes del CRUD de movilidad --}}
+            <div class="row">
+                <div class="offset-1 col-10">
+                    <span><b>Es estos momento no es posible consultar Movilidades en general</b></span>
+                </div>
             </div>
             <div class="offset-3 col-6 mt-5 mb-4">
                 <button class="w-100 btn btn-primary rounded-pill border border-dark">Siguiente</button>
@@ -83,7 +87,7 @@
             </div>
             <div class="offset-1 col-10 mt-4">
                 <label for="" class="mb-1">A nivel: </label>
-                <select class="form-select border border-dark"  name="nacoInt" id="nacoInt" disabled>
+                <select class="form-select border border-dark"  name="nacoInt" id="nacoInt" disabled title="Solo se habilitará para registro de Movilidades o consultas en general">
                     <option value="">-- Seleccione una opción --</option>
                     <option value="internacional">Internacional</option>
                     <option value="nacional">Nacional</option>
@@ -91,13 +95,19 @@
             </div>
             <div class="offset-1 col-10 mt-4">
                 <label for="" class="mb-1">Entrante o Saliente: </label>
-                {{-- Para modificar atributo disable ver activities.js en la carpeta public --}}
+                {{-- Para modificar atributo disable ver index.js en la carpeta public --}}
                 {{-- atributo title mediante onload y se encuentra en layouts.app --}}
-                <select class="form-select border border-dark"  name="entSal" id="entSal" disabled>
+                <select class="form-select border border-dark"  name="entSal" id="entSal" disabled title="Solo se habilitará en registro y consulta de Movilidades">
                     <option value="">-- Seleccione una opción --</option>
                     <option value="entrante">Entrante</option>
                     <option value="saliente">Saliente</option>
                 </select>
+            </div>
+            {{-- Quitar cuando se realice las otra partes del CRUD de movilidad --}}
+            <div class="row">
+                <div class="offset-1 col-10">
+                    <span><b>Es estos momento no es posible consultar Movilidades en general</b></span>
+                </div>
             </div>
             <div class="offset-3 col-6 mt-5 mb-4">
                 <button class="w-100 btn btn-primary rounded-pill border border-dark" id="ori_enlace" type="submit">Siguiente</button>

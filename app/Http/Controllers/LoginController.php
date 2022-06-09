@@ -73,22 +73,22 @@ class LoginController extends Controller
         $c_o_nacoInt = $request->input('c_o_nacoInt');
         $c_o_entSal = $request->input('c_o_entSal');
 
-        if ($c_o_actions != 0 && $c_o_about_what != "") {
-            if ($c_o_actions == 1 && $c_o_about_what == "Movilidad" && $c_o_nacoInt == "internacional" && $c_o_entSal == "entrante") {
+        if ($c_o_actions != "" && $c_o_about_what != "") {
+            if ($c_o_actions == "registrar" && $c_o_about_what == "movilidad" && $c_o_nacoInt == "internacional" && $c_o_entSal == "entrante") {
                 return redirect('/activities/registro_movilidad_int/entrante');
-            } else if ($c_o_actions == 1 && $c_o_about_what == "Movilidad" && $c_o_nacoInt == "internacional" && $c_o_entSal == "saliente") {
+            } else if ($c_o_actions == "registrar" && $c_o_about_what == "movilidad" && $c_o_nacoInt == "internacional" && $c_o_entSal == "saliente") {
                 return redirect('/activities/registro_movilidad_int/saliente');
-            } else if ($c_o_actions == 1 && $c_o_about_what == "Movilidad" && $c_o_nacoInt == "nacional" && $c_o_entSal == "entrante") {
+            } else if ($c_o_actions == "registrar" && $c_o_about_what == "movilidad" && $c_o_nacoInt == "nacional" && $c_o_entSal == "entrante") {
                 return redirect('/activities/registro_movilidad_nac/entrante');
-            } else if ($c_o_actions == 1 && $c_o_about_what == "Movilidad" && $c_o_nacoInt == "nacional" && $c_o_entSal == "saliente") {
+            } else if ($c_o_actions == "registrar" && $c_o_about_what == "movilidad" && $c_o_nacoInt == "nacional" && $c_o_entSal == "saliente") {
                 return redirect('/activities/registro_movilidad_nac/saliente');
-            } else if ($c_o_actions == 2 &&  $c_o_about_what == "Convenio" && $c_o_nacoInt == "internacional") {
+            } else if ($c_o_actions == 2 &&  $c_o_about_what == "convenio" && $c_o_nacoInt == "internacional") {
                 return redirect('/activities/cons_convenios_int');
-            } else if ($c_o_actions == 2 &&  $c_o_about_what == "Convenio" && $c_o_nacoInt == "nacional") {
+            } else if ($c_o_actions == 2 &&  $c_o_about_what == "convenio" && $c_o_nacoInt == "nacional") {
                 return redirect('/activities/cons_convenios_nac');
-            } else if ($c_o_actions == 2 &&  $c_o_about_what == "Institución" && $c_o_nacoInt == "internacional") {
+            } else if ($c_o_actions == 2 &&  $c_o_about_what == "institucion" && $c_o_nacoInt == "internacional") {
                 return redirect('/activities/cons_instituciones_int');
-            } else if ($c_o_actions == 2 &&  $c_o_about_what == "Institución" && $c_o_nacoInt == "nacional") {
+            } else if ($c_o_actions == 2 &&  $c_o_about_what == "institucion" && $c_o_nacoInt == "nacional") {
                 return redirect('/activities/cons_instituciones_nac');
             }
         }

@@ -17,9 +17,15 @@
                     <option value="Estudiante" {{ old('mie_adminstudoc') == "Estudiante" ? 'selected': '' }}>Estudiante</option>
                     <option value="Docente" {{ old('mie_adminstudoc') == "Docente" ? 'selected': '' }}>Docente</option>
                 </select>
+                @error('mie_adminstudoc')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-4">
                 <input type="text" class="form-control border border-dark" placeholder="* Nombre (Administrativo, Docente o Estudiante)..." name="mie_name" id="mie_name" value="{{ old('mie_name') }}">
+                @error('mie_name')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-4">
                 <input type="text" class="form-control border border-dark" placeholder="Titulos obtenidos..." title="Solo se habilitará para Docentes" disabled name="mie_titulos" id="mie_titulos" value="{{ old('mie_titulos') }}">
@@ -33,12 +39,18 @@
                         <option value="{{ $item->nombre }}" {{ old('mie_instent') == $item->nombre ? 'selected': '' }}>{{ $item->nombre }}</option>
                     @endforeach
                 </select>
+                @error('mie_instent')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-4">
                 <select class="form-select border border-dark" name="mie_pais" id="mie_pias">
                     <option value="">-- País origen --</option>
                     @include('pais_ciudad.pais')
                 </select>
+                @error('mie_pais')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-2">
                 <select class="form-select border border-dark" name="mie_activo" id="mie_activo">
@@ -46,15 +58,24 @@
                     <option value="Sí" {{ old('mie_activo') == "Sí" ? 'selected': '' }}>Sí</option>
                     <option value="No" {{ old('mie_activo') == "No" ? 'selected': '' }}>No</option>
                 </select>
+                @error('mie_activo')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-3">
                 <label for="" class="mb-1">* Fecha de la movilidad: </label>
                 <input type="date" class="form-control border border-dark" name="mie_fecha" id="mie_fecha" value="{{ old('mie_fecha') }}">
+                @error('mie_fecha')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-3">
                 <input type="text" class="form-control border border-dark" placeholder="* Vigencia..." name="mie_vigencia" id="mie_vigencia" value="{{ old('mie_vigencia') }}">
+                @error('mie_vigencia')
+                    <span class="text-danger">* {{$message}}</span>
+                @enderror
             </div>
             <div class="col-4">
                 <input type="text" class="form-control border border-dark" placeholder="Sede o regional" name="mie_sedereg" id="mie_sedereg" value="{{ old('mie_sedereg') }}">

@@ -6,6 +6,8 @@ use App\Models\InstitucionEntidadInt;
 use App\Models\MovilidadIntEnt;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class MovilidadIntEntController extends Controller
 {
 
@@ -24,6 +26,16 @@ class MovilidadIntEntController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'mie_adminstudoc' => 'required',
+            'mie_name' => 'required',
+            'mie_instent' => 'required',
+            'mie_pais' => 'required',
+            'mie_activo' => 'required',
+            'mie_fecha' => 'required',
+            'mie_vigencia' => 'required',
+        ]);
+
         $mov = new MovilidadIntEnt();
         $mov->tipoPersona = $request->post('mie_adminstudoc');
         $mov->nombrePersona = $request->post('mie_name');

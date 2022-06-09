@@ -16,7 +16,7 @@
 </head>
 
 
-<body style="background: url('{{asset('images/index/background.jpeg')}}')" onload="onloadLogFuncs();" >
+<body style="background: url('{{asset('images/index/background.jpeg')}}')">
     <div class="container-fluid b-g">
         <div class="row ">
             <div class="col">
@@ -27,7 +27,7 @@
                                 class="border me-5 pt-1 pb-1 ps-3 pe-3 rounded-pill log-out border border-dark">Logout</a>
                         </div>
                     </div>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col">        
                             <div class="abs-center-act">
                             @yield('act_content')

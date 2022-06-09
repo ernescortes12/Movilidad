@@ -1,32 +1,28 @@
 function loadActions() {
-    var register = new Array('-- Seleccione una opción --', 'Movilidad');
-    var consult = new Array('-- Seleccione una opción --', 'Movilidad', 'Convenio', 'Institución');
-
-    var allActions = [
-        [],
-        register,
-        consult,
-    ];
-
-    var main_options = document.getElementById('c_o_actions')
-    var main_options_value = main_options[c_o_actions.selectedIndex].value
-    var sec = document.getElementById('c_o_about_what')
-
-    if (main_options_value != "") {
-        actions = allActions[main_options_value]
-        num_actions = actions.length
-        sec.length = num_actions
-        for (i = 0; i < num_actions; i++) {
-            sec.options[i].value = actions[i]
-            sec.options[i].text = actions[i]
-        }
+    var listaAcciones = {
+        registrar: ['Movilidad'],
+        consultar: ['Convenio', 'Institucion', 'Movilidad']
     }
-    else {
-        sec.length = 1
-        sec.options[0].value = "-- Seleccione una opción --"
-        sec.options[0].text = "-- Seleccione una opción --"
+
+    var main_option = document.getElementById('c_o_actions')
+    var sec_option = document.getElementById('c_o_about_what')
+    var main_option_selected = main_option.value
+
+    sec_option.innerHTML = '<option value="">-- Seleccione una opción --</option>'
+
+    if (main_option_selected != "") {
+
+        main_option_selected = listaAcciones[main_option_selected]
+
+
+        main_option_selected.forEach(function (action) {
+            let opcion = document.createElement('option')
+            opcion.value = action.toLowerCase()
+            opcion.text = action
+            console.log(opcion)
+            // sec_option.appendChild(opcion)
+        });
     }
-    sec.options[0].selected = true
 }
 
 function activateNacInt() {
@@ -76,16 +72,6 @@ function activateEntSal() {
 
 }
 
-function messageNacInt() {
-    var third_option = document.getElementById('nacoInt')
-    third_option.setAttribute('title', 'Solo se habilitará para registro de Movilidades o consultas en general')
-}
-
-function messageEntSal() {
-    var fourth_option = document.getElementById('entSal')
-    fourth_option.setAttribute('title', 'Solo se habilitará en registro y consulta de Movilidades')
-}
-
 function activateDegree(option, title) {
     if (option != "") {
         if (option == "Docente") {
@@ -123,10 +109,4 @@ function activateDegreeMNS() {
     var option = document.getElementById('mns_adminstudoc').value
     var titulo = document.getElementById('mns_titulos')
     activateDegree(option, titulo)
-}
-
-
-function onloadLogFuncs() {
-    messageEntSal()
-    messageNacInt()
 }

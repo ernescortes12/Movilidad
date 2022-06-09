@@ -24,6 +24,16 @@ class MovilidadIntSalController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'mis_adminstudoc' => 'required',
+            'mis_name' => 'required',
+            'mis_instent' => 'required',
+            'mis_pais' => 'required',
+            'mis_activo' => 'required',
+            'mis_fecha' => 'required',
+            'mis_vigencia' => 'required',
+        ]);
+
         $mov = new MovilidadIntSal();
         $mov->tipoPersona = $request->post('mis_adminstudoc');
         $mov->nombrePersona = $request->post('mis_name');

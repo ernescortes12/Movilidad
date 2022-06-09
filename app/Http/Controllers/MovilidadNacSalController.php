@@ -23,6 +23,16 @@ class MovilidadNacSalController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'mns_adminstudoc' => 'required',
+            'mns_name' => 'required',
+            'mns_instent' => 'required',
+            'mns_ciudad' => 'required',
+            'mns_activo' => 'required',
+            'mns_fecha' => 'required',
+            'mns_vigencia' => 'required',
+        ]);
+
         $mov = new MovilidadNacSal();
         $mov->tipoPersona = $request->post('mns_adminstudoc');
         $mov->nombrePersona = $request->post('mns_name');

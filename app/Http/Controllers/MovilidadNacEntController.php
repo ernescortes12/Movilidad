@@ -24,6 +24,16 @@ class MovilidadNacEntController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'mne_adminstudoc' => 'required',
+            'mne_name' => 'required',
+            'mne_instent' => 'required',
+            'mne_ciudad' => 'required',
+            'mne_activo' => 'required',
+            'mne_fecha' => 'required',
+            'mne_vigencia' => 'required',
+        ]);
+
         $mov = new MovilidadNacEnt();
         $mov->tipoPersona = $request->post('mne_adminstudoc');
         $mov->nombrePersona = $request->post('mne_name');

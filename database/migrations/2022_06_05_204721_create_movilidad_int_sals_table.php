@@ -23,9 +23,10 @@ return new class extends Migration
             $table->string('activo', 2);
             $table->date('fecha');
             $table->string('vigencia');
-            $table->string('sedeReg');
+            $table->string('sedeReg')->nullable();
             $table->text('objeto')->nullable();
             $table->text('resultado')->nullable();
+            $table->tinyInteger('estado')->default(1);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 
