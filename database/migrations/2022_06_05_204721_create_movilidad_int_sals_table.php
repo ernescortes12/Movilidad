@@ -16,20 +16,22 @@ return new class extends Migration
         Schema::create('movilidad_int_sals', function (Blueprint $table) {
             $table->id();
             $table->string('tipoPersona', 20);
-            $table->string('nombrePersona');
+            $table->string('firstNameSup');
+            $table->string('secnameSup')->nullable();
+            $table->string('lastNameSup');
             $table->string('titulosOb')->nullable();
-            $table->string('instEntDest');
-            $table->string('paisDest', 70);
             $table->string('activo', 2);
             $table->date('fecha');
-            $table->string('vigencia');
+            $table->date('vigencia');
             $table->string('sedeReg')->nullable();
-            $table->text('objeto')->nullable();
-            $table->text('resultado')->nullable();
+            $table->string('objeto', 600)->nullable();
+            $table->string('resultado', 600)->nullable();
             $table->tinyInteger('estado')->default(1);
+            $table->bigInteger('instEnt_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
 
+            $table->foreign('instEnt_id')->references('id')->on('institucion_entidad_ints')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
         });
     }

@@ -7,7 +7,7 @@
         @method('PUT')
         <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
-                <h4 class="text-center" id="die">Edición Convenios DIE</h4>
+                <h4 class="text-center" id="die">Edición Convenio Internacional</h4>
             </div>
         </div>
         <div class="row mt-4">
@@ -28,7 +28,8 @@
                 @enderror
             </div>
             <div class="col-5 ">
-                <input class="form-control border border-dark" type="text" placeholder="* Vigencia..."  name="con_vigenciaInt" id="con_vigenciaInt" value="{{ $convs->vigencia }}">
+                <label for="" class="mb-1">* Vigencia del convenio:</label>
+                <input class="form-control border border-dark" type="date" name="con_vigenciaInt" id="con_vigenciaInt" value="{{ $convs->vigencia }}">
                 @error('con_vigenciaInt')
                     <span class="text-danger">*{{ $message }}</span>    
                 @enderror
@@ -58,12 +59,22 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <textarea class="form-control border border-dark" placeholder="Objeto..." name="conv_objetoInt" id="conv_objetoInt">{{ $convs->objeto }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Objeto..." name="conv_objetoInt" id="conv_objetoInt" onkeyup="countCharsOb(this);">{{ $convs->objeto }}</textarea>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="offset-1 col-10 d-flex justify-content-end">
+                <span id="charNumOb" class="text-center">0/600</span>
             </div>
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <textarea class="form-control border border-dark" placeholder="Alcance..."  name="conv_alcanceInt" id="conv_alcanceInt" >{{ $convs->alcance }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Alcance..."  name="conv_alcanceInt" id="conv_alcanceInt" onkeyup="countCharsAl(this);">{{ $convs->alcance }}</textarea>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="offset-1 col-10 d-flex justify-content-end">
+                <span id="charNumAl" class="text-center">0/600</span>
             </div>
         </div>
         <div class="row mt-4">

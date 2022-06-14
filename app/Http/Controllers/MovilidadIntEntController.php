@@ -24,30 +24,30 @@ class MovilidadIntEntController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, MovilidadIntEnt $mov)
     {
         $request->validate([
             'mie_adminstudoc' => 'required',
-            'mie_name' => 'required',
+            'mie_firstname' => 'required',
+            'mie_lastname' => 'required',
             'mie_instent' => 'required',
-            'mie_pais' => 'required',
             'mie_activo' => 'required',
             'mie_fecha' => 'required',
             'mie_vigencia' => 'required',
         ]);
 
-        $mov = new MovilidadIntEnt();
         $mov->tipoPersona = $request->post('mie_adminstudoc');
-        $mov->nombrePersona = $request->post('mie_name');
+        $mov->firstNameSup = $request->post('mie_firstname');
+        $mov->secnameSup = $request->post('mie_secondname');
+        $mov->lastNameSup = $request->post('mie_lastname');
         $mov->titulosOb = $request->post('mie_titulos');
-        $mov->instEntOrig = $request->post('mie_instent');
-        $mov->paisOrig = $request->post('mie_pais');
         $mov->activo = $request->post('mie_activo');
         $mov->fecha = $request->post('mie_fecha');
         $mov->vigencia = $request->post('mie_vigencia');
         $mov->sedeReg = $request->post('mie_sedereg');
         $mov->objeto = $request->post('mie_objeto');
         $mov->resultado = $request->post('mie_result');
+        $mov->instEnt_id = $request->post('mie_instent');
         $mov->user_id = auth()->user()->id;
 
 

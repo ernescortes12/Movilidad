@@ -8,7 +8,7 @@
         
         <div class="row mt-3 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
-                <h4 class="text-center">Registro Instituciones/Entidades ORI</h4>
+                <h4 class="text-center">Registro Institución/Entidad Nacional</h4>
             </div>
         </div>
         <div class="row mt-4">
@@ -73,7 +73,7 @@
         @csrf
         <div class="row mt-2 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
-                <h4 class="text-center">Registro Institucion/Entidad DIE</h4>
+                <h4 class="text-center">Registro Institucion/Entidad Internacional</h4>
             </div>
         </div>
 
@@ -99,6 +99,11 @@
                 @error('ints_cityInt')
                     <span style="color: red">*{{ $message }}</span>    
                 @enderror
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="offset-1 col-10 ">
+                <input type="text" class="form-control border border-dark" placeholder="NIT o equivalente..." id="ints_nitInt" name="ints_nitInt" value="{{ old('ints_nitInt') }}">
             </div>
         </div>
         <div class="row mt-4">

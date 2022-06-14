@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="offset-1 col-2">
+            <div class="offset-1 col-3">
                 <select  class="form-select border border-dark" name="mns_adminstudoc" id="mns_adminstudoc" onchange="activateDegreeMNS()">
                     <option value="" selected>-- Tipo de persona --</option>
                     <option value="Administrativo" {{ old('mns_adminstudoc') == "Administrativo" ? 'selected': '' }}>Administrativo</option>
@@ -21,34 +21,14 @@
                     <span class="text-danger">* {{$message}}</span>
                 @enderror
             </div>
-            <div class="col-4">
-                <input type="text" class="form-control border border-dark" placeholder="* Nombre (Administrativo, Docente o Estudiante)..." name="mns_name" id="mns_name" value="{{ old('mns_name') }}">
-                @error('mns_name')
-                    <span class="text-danger">* {{$message}}</span>
-                @enderror 
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control border border-dark" placeholder="Titulos obtenidos..." disabled title="Solo se habilitará para Docentes" name="mns_titulos" id="mns_titulos" value="{{ old('mns_titulos') }}">
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="offset-1 col-4">
+            <div class="col-5">
                 <select class="form-select border border-dark" name="mns_instent" id="mns_instent">
                     <option value="" selected>-- Institución o Entidad destino --</option>
                     @foreach ($instEnt as $item)
-                        <option value="{{ $item->nombre }}" {{ old('mns_instent') == $item->nombre ? 'selected': '' }}>{{ $item->nombre }}</option>
+                        <option value="{{ $item->id }}" {{ old('mns_instent') == $item->id ? 'selected': '' }}>{{ $item->nombre }}</option>
                     @endforeach
                 </select>
                 @error('mns_instent')
-                    <span class="text-danger">* {{$message}}</span>
-                @enderror
-            </div>
-            <div class="col-4">
-                <select class="form-select border border-dark" name="mns_ciudad" id="mns_ciudad">
-                    <option value="">-- Ciudad destino --</option>
-                    @include('pais_ciudad.ciudad')
-                </select>
-                @error('mns_ciudad')
                     <span class="text-danger">* {{$message}}</span>
                 @enderror
             </div>
@@ -64,6 +44,33 @@
             </div>
         </div>
         <div class="row mt-4">
+            <div class="col">
+                <div class="row">
+                    <div class="offset-1 col">Información del participante (Administrativo, Estudiante o Docente):</div>
+                </div>
+                <div class="row mt-1">
+                    <div class="offset-1 col-2">
+                        <input type="text" class="form-control border border-dark" placeholder="* Primer nombre..." name="mns_firstname" id="mns_firstname" value="{{ old('mns_firstname') }}">
+                        @error('mns_firstname')
+                            <span class="text-danger">* {{$message}}</span>
+                        @enderror 
+                    </div>
+                    <div class="col-2">
+                        <input type="text" class="form-control border border-dark" placeholder="Segundo nombre..." name="mns_secondname" id="mns_secondname" value="{{ old('mns_secondname') }}">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control border border-dark" placeholder="* Apellido(s)..." name="mns_lastname" id="mns_lastname" value="{{ old('mns_lastname') }}">
+                        @error('mns_lastname')
+                            <span class="text-danger">* {{$message}}</span>
+                        @enderror 
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control border border-dark" placeholder="Titulos obtenidos..." disabled title="Solo se habilitará para Docentes" name="mns_titulos" id="mns_titulos" value="{{ old('mns_titulos') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
             <div class="offset-1 col-3">
                 <label for="" class="mb-1">* Fecha de la movilidad: </label>
                 <input type="date" class="form-control border border-dark" name="mns_fecha" id="mns_fecha" value="{{ old('mns_fecha') }}">
@@ -72,7 +79,8 @@
                 @enderror
             </div>
             <div class="col-3">
-                <input type="text" class="form-control border border-dark" placeholder="* Vigencia..." name="mns_vigencia" id="mns_vigencia" value="{{ old('mns_vigencia') }}">
+                <label for="" class="mb-1">* Vigencia de la movilidad: </label>
+                <input type="date" class="form-control border border-dark" name="mns_vigencia" id="mns_vigencia" value="{{ old('mns_vigencia') }}">
                 @error('mns_vigencia')
                     <span class="text-danger">* {{$message}}</span>
                 @enderror
@@ -83,13 +91,19 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-5">
-                <textarea class="form-control border border-dark" placeholder="Breve objeto..." name="mns_objeto" id="mns_objeto">{{ old('mns_objeto') }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Breve objeto..." name="mns_objeto" id="mns_objeto" onkeyup="countCharsOb(this);" maxlength="600">{{ old('mns_objeto') }}</textarea>
+                <div class="d-flex justify-content-end">
+                    <span id="charNumOb">0/600</span>
+                </div>
             </div>
             <div class="col-5">
-                <textarea class="form-control border border-dark" placeholder="Resultado" name="mns_result" id="mns_result">{{ old('mns_result') }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Resultado" name="mns_result" id="mns_result" onkeyup="countCharsAl(this);" maxlength="600">{{ old('mns_result') }}</textarea>
+                <div class="d-flex justify-content-end">
+                    <span id="charNumAl">0/600</span>
+                </div>
             </div>
         </div>
-        <div class="row mt-5 mb-4">
+        <div class="row mt-4 mb-4">
             <div class="offset-1 col-2">
                 <a href="{{ route('login.activites') }}" class="text-danger text-decoration-none">Regresar</a>
             </div>

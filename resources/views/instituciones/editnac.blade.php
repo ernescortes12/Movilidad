@@ -7,7 +7,7 @@
     @method('PUT')
     <div class="row mt-2 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
-            <h4 class="text-center ">Edición Institución/Entidad ORI</h4>
+            <h4 class="text-center ">Edición Institución/Entidad Nacional</h4>
         </div>
     </div>
     <div class="row mt-4">

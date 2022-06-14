@@ -7,7 +7,7 @@
     @method('PUT')
     <div class="row mt-3 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
-            <h4 class="text-center" id="ori">Edición Convenios ORI</h4>
+            <h4 class="text-center" id="ori">Edición Convenio Nacional</h4>
         </div>
     </div>
     <div class="row">
@@ -52,17 +52,12 @@
             <select class="form-control border border-dark" id="con_instEntNac" name="con_instEntNac">
                 <option selected value="">-- * Institución o Entidad --</option>
                 @foreach ($instEntNacs as $item)
-                    <option value="{{ $item->nombre }}" {{ $convs->instEntNac == $item->nombre ? 'selected' : '' }}> {{ $item->nombre }}</option>
+                    <option value="{{ $item->id }}" {{ $convs->instEntNac_id == $item->id ? 'selected' : '' }}> {{ $item->nombre }}</option>
                 @endforeach
             </select>
             @error('con_instEntNac')
                 <span class="text-danger">*{{ $message }}</span>    
             @enderror
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="offset-1 col-10">
-            <input type="text" class="form-control border border-dark" placeholder="Departamento, Ciudad o Municipio..." id="conv_dtpcitymunNac" name="conv_dtpcitymunNac" value="{{ $convs->dtpcitymun }}">
         </div>
     </div>
     <div class="row mt-4">

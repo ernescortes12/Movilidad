@@ -15,6 +15,7 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
+        // Agregar acá otros roles si es necesario
         $array = array(
             array('rol_name' => 'Coordinacion'),
             array('rol_name' => 'ORI'),

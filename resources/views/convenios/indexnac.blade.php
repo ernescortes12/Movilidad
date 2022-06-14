@@ -2,7 +2,7 @@
 @section('title', 'Convenios Nacionales')
 
 @section('content')
-<form action="" class="border border-2 rounded-3 shadow-lg" style="width: 75%;">
+<form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 75%;">
     @csrf
     <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
@@ -19,18 +19,15 @@
                                 <th scope="col">Código</th>
                                 <th scope="col">Supervisor</th>
                                 <th scope="col">Institución o Entidad</th>
-                                <th scope="col">Dpto/Cd/Mpio</th>
+                                <th scope="col">Ciudad</th>
                                 <th scope="col">Fecha de Inicio</th>
                                 <th scope="col">Vigencia</th> 
                                 <th scope="col">Tipo</th>
-                                
                                 @if (auth()->user()->rol_id == 2)
                                     <th scope="col">Acciones</th>
                                 @endif
-                                <th scope="col">Documentación Soporte</th>
-                                <th scope="col">Nit</th>
                                 <th scope="col">Recursos</th>
-                                
+                                <th scope="col">Documentación Soporte</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,8 +35,8 @@
                                 <tr>
                                     <td> {{ $item->codigo }}</td>
                                     <td> {{ $item->supervisor }} </td>
-                                    <td> {{ $item->instEntNac }} </td>
-                                    <td> {{ $item->dtpcitymun }} </td>
+                                    <td> {{ $item->nombre }} </td>
+                                    <td> {{ $item->ciudad }} </td>
                                     <td> {{ $item->fechaInicio }} </td>
                                     <td> {{ $item->vigencia }} </td>
                                     <td> {{ $item->tipo }} </td>
@@ -59,14 +56,14 @@
                                                 </div>
                                             </form>
                                         </td>
-                                    @endif                                    
+                                    @endif
+                                    <td> {{ $item->recursos }} </td>                               
                                     <td> 
                                         @foreach (explode(",", $item->docSoportes) as $file)
                                             <br> - <a href="{{ url('/download_conv_nac', $file) }}">{{$file}}</a>
                                         @endforeach 
                                     </td>
-                                    <td> {{ $item->nit }} </td>
-                                    <td> {{ $item->recursos }} </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

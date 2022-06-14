@@ -2,7 +2,7 @@
 @section('title', 'Convenios Internacionales')
 
 @section('content')
-<form action="" class="border border-2 rounded-3 shadow-lg" style="width: 84%;">
+<form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 90%;">
     @csrf
     <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
@@ -33,7 +33,7 @@
                                 <th scope="col">Constitución legal de la Institución/Entidad</th>
                                 <th scope="col">Certificación de facultad para celebrar convenio</th>
                                 <th scope="col">Informa de estudios previos</th>
-                                <th scope="col">Minuto</th>
+                                <th scope="col">Minuta</th>
                                 <th scope="col">Garantias</th>
                                 <th scope="col">Actas y documentos suscritos en seguimiento de la ejecución del convenio</th>
                                 <th scope="col">Resolución con nombramiento de supervisor</th>
@@ -49,7 +49,7 @@
                                     <td> {{ $item->tipo }} </td>
                                     <td> 
                                         @foreach (explode(",",$item->int_ent)  as $inst)
-                                            - {{$inst}}<br>
+                                            {{$inst}}<br>
                                         @endforeach
                                     </td>
                                     <td> {{ $item->programa }} </td>
@@ -73,27 +73,27 @@
                                     </td>
                                     <td> <br>{{ $item->objeto }} </td>
                                     <td> <br>{{ $item->alcance }} </td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->docSupervisor) }}">{{ $item->docSupervisor }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->docSupervisor) }}">{{ $item->docSupervisor }}</a></td>
                                     <td> 
                                         @foreach (explode(",",$item->nombProsesion) as $nP)
-                                            <br> - <a href="{{ url('/download_conv_int', $nP) }}">{{ $nP }}</a>
+                                            <br><a href="{{ url('/download_conv_int', $nP) }}">{{ $nP }}</a>
                                         @endforeach
                                     </td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->constRegistro) }}">{{ $item->constRegistro }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->constRegistro) }}">{{ $item->constRegistro }}</a></td>
                                     <td>
                                         @foreach (explode(",",$item->certFacultad) as $cert)
-                                            <br> - <a href="{{ url('/download_conv_int', $cert) }}">{{ $cert }}</a>
+                                            <br><a href="{{ url('/download_conv_int', $cert) }}">{{ $cert }}</a>
                                         @endforeach
                                     </td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->infEstudios) }}">{{ $item->infEstudios }}</a></td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->infEstudios) }}">{{ $item->minuta }}</a></td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->garantias) }}">{{ $item->garantias }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->infEstudios) }}">{{ $item->infEstudios }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->infEstudios) }}">{{ $item->minuta }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->garantias) }}">{{ $item->garantias }}</a></td>
                                     <td>
                                         @foreach (explode(",",$item->actaSeguimiento ) as $acta)
-                                            <br> - <a href="{{ url('/download_conv_int', $acta) }}">{{ $acta }}</a>
+                                            <br><a href="{{ url('/download_conv_int', $acta) }}">{{ $acta }}</a>
                                         @endforeach
                                     </td>
-                                    <td> <br> - <a href="{{ url('/download_conv_int', $item->resnombSupervisor) }}">{{ $item->resnombSupervisor }}</a></td>
+                                    <td> <br><a href="{{ url('/download_conv_int', $item->resnombSupervisor) }}">{{ $item->resnombSupervisor }}</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

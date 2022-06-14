@@ -7,7 +7,7 @@
     @method('PUT')
     <div class="row mt-2 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
-            <h4 class="text-center">Edición Institución/Entidad DIE</h4>
+            <h4 class="text-center">Edición Institución/Entidad Internacional</h4>
         </div>
     </div>
     <div class="row mt-4">
@@ -29,6 +29,11 @@
     <div class="row mt-4">
         <div class="offset-1 col-10">
             <input type="text" class="form-control border border-dark " placeholder="* Ciudad, estado o provincia..." id="ints_cityInt" name="ints_cityInt" value="{{ $instInt->ciudad }}">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="offset-1 col-10 ">
+            <input type="text" class="form-control border border-dark" placeholder="NIT o equivalente..." id="ints_nitInt" name="ints_nitInt" value="{{ $instInt->nit }}">
         </div>
     </div>
     <div class="row mt-4">

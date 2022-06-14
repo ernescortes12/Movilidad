@@ -7,7 +7,7 @@
         @csrf
         <div class="row mt-3 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
-                <h4 class="text-center" id="ori">Registro Convenios ORI</h4>
+                <h4 class="text-center" id="ori">Registro Convenio Nacional</h4>
             </div>
         </div>
         <div class="row">
@@ -49,10 +49,10 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <select class="form-control border border-dark" id="con_instEntNac" name="con_instEntNac">
+                <select class="form-select border border-dark" id="con_instEntNac" name="con_instEntNac">
                     <option selected value="">-- * Institución o Entidad --</option>
                     @foreach ($instEntNacs as $item)
-                        <option value="{{ $item->nombre }}" {{ old('con_instEntNac') == $item->nombre ? 'selected': '' }}> {{ $item->nombre }}</option>
+                        <option value="{{ $item->id }}" {{ old('con_instEntNac') == $item->id ? 'selected': '' }}> {{ $item->nombre }}</option>
                     @endforeach
                 </select>
                 @error('con_instEntNac')
@@ -67,17 +67,16 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <input type="text" class="form-control border border-dark" placeholder="Número NIT..." id="conv_nitNac" name="conv_nitNac" value="{{ old('conv_nitNac') }}">
+                <textarea placeholder="Recursos..." class="form-control border border-dark"  name="conv_recursosNac" id="conv_recursosNac" onkeyup="countCharsAl(this);" maxlength="600">{{  old('conv_recursosNac') }}</textarea>
+                <div class="d-flex justify-content-end">
+                    <span id="charNumAl">0/600</span>
+                </div>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-3">
             <div class="offset-1 col-10">
-                <textarea placeholder="Recursos..." class="form-control border border-dark"  name="conv_recursosNac" id="conv_recursosNac">{{  old('conv_recursosNac') }}</textarea>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="offset-1 col-10">
-                <input type="text" class="form-control border border-dark" placeholder="* Vigencia..." id="conv_vigenciaNac" name="conv_vigenciaNac" value="{{ old('conv_vigenciaNac') }}">
+                <label for="" class="mb-1">* Vigencia:</label>
+                <input type="date" class="form-control border border-dark" id="conv_vigenciaNac" name="conv_vigenciaNac" value="{{ old('conv_vigenciaNac') }}">
                 @error('conv_vigenciaNac')
                     <span class="text-danger">*{{ $message }}</span>    
                 @enderror
@@ -111,7 +110,7 @@
         @csrf
         <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
-                <h4 class="text-center" id="die">Registro Convenios DIE</h4>
+                <h4 class="text-center" id="die">Registro Convenio Internacional</h4>
             </div>
         </div>
         <div class="row mt-4">
@@ -132,7 +131,8 @@
                 @enderror
             </div>
             <div class="col-5 ">
-                <input class="form-control border border-dark" type="text" placeholder="* Vigencia..."  name="con_vigenciaInt" id="con_vigenciaInt" value="{{ old('con_vigenciaInt') }}">
+                <label for="" class="mb-1">* Vigencia del convenio:</label>
+                <input class="form-control border border-dark" type="date" name="con_vigenciaInt" id="con_vigenciaInt" value="{{ old('con_vigenciaInt') }}">
                 @error('con_vigenciaInt')
                     <span class="text-danger">*{{ $message }}</span>    
                 @enderror
@@ -155,7 +155,8 @@
                     
             </div>
             <div class="col-5">
-                <input class="form-control border border-dark" type="text" placeholder="* Nombre del programa acádemico..." name="conv_programInt" id="conv_programInt" value="{{ old('conv_programInt') }}">
+                <input class="form-control border border-dark" type="text" placeholder="* Programa(s) académico(s)..." name="conv_programInt" id="conv_programInt" value="{{ old('conv_programInt') }}">
+                <span>Nota: Si se ingresan 2 o más, separar con comas.</span>
                 @error('conv_programInt')
                     <span class="text-danger">*{{ $message }}</span>    
                 @enderror
@@ -163,24 +164,31 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <textarea class="form-control border border-dark" placeholder="Objeto..." name="conv_objetoInt" id="conv_objetoInt">{{ old('conv_objetoInt') }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Objeto..." name="conv_objetoInt" id="conv_objetoInt" onkeyup="countCharsOb(this);">{{ old('conv_objetoInt') }}</textarea>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="offset-1 col-10 d-flex justify-content-end">
+                <span id="charNumOb" class="text-center">0/600</span>
             </div>
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <textarea class="form-control border border-dark" placeholder="Alcance..."  name="conv_alcanceInt" id="conv_alcanceInt">{{ old('conv_alcanceInt') }}</textarea>
+                <textarea class="form-control border border-dark" placeholder="Alcance..."  name="conv_alcanceInt" id="conv_alcanceInt" onkeyup="countCharsAl(this);">{{ old('conv_alcanceInt') }}</textarea>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="offset-1 col-10 d-flex justify-content-end">
+                <span id="charNumAl" class="text-center">0/600</span>
             </div>
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-2">
                 <select class="form-select border border-dark" name="con_activoNoInt" id="con_activoNoInt">
-                    <option selected value="">-- * Activo --</option>
+                    <option selected value="">-- Activo --</option>
                     <option value="Sí" {{ old('con_activoNoInt') == 'Sí' ? 'selected': '' }}>Sí</option>
                     <option value="No" {{ old('con_activoNoInt') == 'No' ? 'selected': '' }}>No</option>
                 </select>
-                @error('con_activoNoInt')
-                    <span class="text-danger">*{{ $message }}</span>    
-                @enderror
             </div>
             <div class="col-8">
                 <div class="row ">
@@ -190,17 +198,11 @@
                 </div>
                 <div class="row mt-2 mb-1">
                     <div class="col-4">
-                        <label for="" class="mb-1">* Fecha: </label>
+                        <label for="" class="mb-1">Fecha: </label>
                         <input type="date" class="form-control border border-dark" id="conv_datestartInt" name="conv_datestartInt" value="{{ old('conv_datestartInt') }}">
-                        @error('conv_datestartInt')
-                            <span class="text-danger">*{{ $message }}</span>    
-                        @enderror
                     </div>
                     <div class="col-8">
-                        <input class="form-control border border-dark" type="text" placeholder="* Vigencia de la prórroga..." name="con_vigproInt" id="con_vigproInt" value="{{ old('con_vigproInt') }}">
-                        @error('con_vigproInt')
-                            <span class="text-danger">*{{ $message }}</span>    
-                        @enderror
+                        <input class="form-control border border-dark" type="text" placeholder="Vigencia de la prórroga..." name="con_vigproInt" id="con_vigproInt" value="{{ old('con_vigproInt') }}">
                     </div>
                 </div>
             </div>

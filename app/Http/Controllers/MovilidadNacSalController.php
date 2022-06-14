@@ -25,9 +25,9 @@ class MovilidadNacSalController extends Controller
     {
         $request->validate([
             'mns_adminstudoc' => 'required',
-            'mns_name' => 'required',
+            'mns_firstname' => 'required',
+            'mns_lastname' => 'required',
             'mns_instent' => 'required',
-            'mns_ciudad' => 'required',
             'mns_activo' => 'required',
             'mns_fecha' => 'required',
             'mns_vigencia' => 'required',
@@ -35,16 +35,17 @@ class MovilidadNacSalController extends Controller
 
         $mov = new MovilidadNacSal();
         $mov->tipoPersona = $request->post('mns_adminstudoc');
-        $mov->nombrePersona = $request->post('mns_name');
+        $mov->firstNameSup = $request->post('mns_firstname');
+        $mov->secnameSup = $request->post('mns_secondname');
+        $mov->lastNameSup = $request->post('mns_lastname');
         $mov->titulosOb = $request->post('mns_titulos');
-        $mov->instEntDest = $request->post('mns_instent');
-        $mov->ciudadDest = $request->post('mns_ciudad');
         $mov->activo = $request->post('mns_activo');
         $mov->fecha = $request->post('mns_fecha');
         $mov->vigencia = $request->post('mns_vigencia');
         $mov->sedeReg = $request->post('mns_sedereg');
         $mov->objeto = $request->post('mns_objeto');
         $mov->resultado = $request->post('mns_result');
+        $mov->instEnt_id = $request->post('mns_instent');
         $mov->user_id = auth()->user()->id;
 
         $mov->save();

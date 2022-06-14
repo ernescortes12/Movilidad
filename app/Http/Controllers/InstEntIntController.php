@@ -34,9 +34,11 @@ class InstEntIntController extends Controller
         $instentInt->nombre = $request->post('instentnameInt');
         $instentInt->pais = $request->post('inst_paisInt');
         $instentInt->ciudad = $request->post('ints_cityInt');
+        $instentInt->nit = $request->post('ints_nitInt');
         $instentInt->telefono = $request->post('ints_telefonoInt');
         $instentInt->email = $request->post('int_emailInt');
         $instentInt->user_id = auth()->user()->id;
+
 
         $instentInt->save();
 
@@ -65,6 +67,7 @@ class InstEntIntController extends Controller
         $inst->nombre = $request->instentnameInt;
         $inst->pais = $request->inst_paisInt;
         $inst->ciudad = $request->ints_cityInt;
+        $inst->nit = $request->ints_nitInt;
         $inst->telefono = $request->ints_telefonoInt;
         $inst->email = $request->int_emailInt;
 

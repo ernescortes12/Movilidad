@@ -22,30 +22,30 @@ class MovilidadIntSalController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, MovilidadIntSal $mov)
     {
         $request->validate([
             'mis_adminstudoc' => 'required',
-            'mis_name' => 'required',
+            'mis_firstname' => 'required',
+            'mis_lastname' => 'required',
             'mis_instent' => 'required',
-            'mis_pais' => 'required',
             'mis_activo' => 'required',
             'mis_fecha' => 'required',
             'mis_vigencia' => 'required',
         ]);
 
-        $mov = new MovilidadIntSal();
         $mov->tipoPersona = $request->post('mis_adminstudoc');
-        $mov->nombrePersona = $request->post('mis_name');
+        $mov->firstNameSup = $request->post('mis_firstname');
+        $mov->secnameSup = $request->post('mis_secondname');
+        $mov->lastNameSup = $request->post('mis_lastname');
         $mov->titulosOb = $request->post('mis_titulos');
-        $mov->instEntDest = $request->post('mis_instent');
-        $mov->paisDest = $request->post('mis_pais');
         $mov->activo = $request->post('mis_activo');
         $mov->fecha = $request->post('mis_fecha');
         $mov->vigencia = $request->post('mis_vigencia');
         $mov->sedeReg = $request->post('mis_sedereg');
         $mov->objeto = $request->post('mis_objeto');
         $mov->resultado = $request->post('mis_result');
+        $mov->instEnt_id = $request->post('mis_instent');
         $mov->user_id = auth()->user()->id;
 
         $mov->save();

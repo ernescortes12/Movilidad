@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ConvenioController;
-use App\Http\Controllers\InstEntController;
+use App\Http\Controllers\ConvenioIntController;
+use App\Http\Controllers\ConvenioNacController;
 use App\Http\Controllers\InstEntIntController;
 use App\Http\Controllers\InstEntNacController;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,7 @@ use App\Http\Controllers\MovilidadIntEntController;
 use App\Http\Controllers\MovilidadIntSalController;
 use App\Http\Controllers\MovilidadNacEntController;
 use App\Http\Controllers\MovilidadNacSalController;
+use App\Models\ConvenioNac;
 
 // Login Routes
 Route::get('/', [LoginController::class, 'show'])->name('login.index');
@@ -29,13 +31,13 @@ Route::post('/store_instituciones_int', [InstEntIntController::class, 'store'])
     ->name('instituciones.store_int')->middleware(['auth']);
 
 // Convenios 
-Route::get('/activities/registro_convenios', [ConvenioController::class, 'create'])
+Route::get('/activities/registro_convenios', [ConvenioIntController::class, 'create'])
     ->name('convenios.create')->middleware('auth');
 
-Route::post('/store_convenios_nac', [ConvenioController::class, 'store_nac'])
+Route::post('/store_convenios_nac', [ConvenioNacController::class, 'store'])
     ->name('convenios.store_nac')->middleware(['auth']);
 
-Route::post('/store_convenios_int', [ConvenioController::class, 'store_int'])
+Route::post('/store_convenios_int', [ConvenioIntController::class, 'store'])
     ->name('convenios.store_int')->middleware(['auth']);
 
 // Movilidades
@@ -78,10 +80,10 @@ Route::get('/activities/cons_instituciones_nac', [InstEntNacController::class, '
     ->name('instituciones.show_nac')->middleware('auth');
 
 // Convenios
-Route::get('/activities/cons_convenios_int', [ConvenioController::class, 'index_int'])
+Route::get('/activities/cons_convenios_int', [ConvenioIntController::class, 'index'])
     ->name('convenios.show_int')->middleware('auth');
 
-Route::get('/activities/cons_convenios_nac', [ConvenioController::class, 'index_nac'])
+Route::get('/activities/cons_convenios_nac', [ConvenioNacController::class, 'index'])
     ->name('convenios.show_nac')->middleware('auth');
 
 //Update
@@ -100,16 +102,16 @@ Route::put('/activities/institucion_nac/{inst_id}', [InstEntNacController::class
 
 
 //Convenios
-Route::get('/activities/convenio_int/{conv_id}/edit', [ConvenioController::class, 'edit_int'])
+Route::get('/activities/convenio_int/{conv_id}/edit', [ConvenioIntController::class, 'edit'])
     ->name('convenios_int.edit')->middleware('auth');
 
-Route::put('/activities/convenio_int/{conv_id}', [ConvenioController::class, 'update_int'])
+Route::put('/activities/convenio_int/{conv_id}', [ConvenioIntController::class, 'update'])
     ->name('convenios_int.update')->middleware('auth');
 
-Route::get('/activities/convenio_nac/{conv_id}/edit', [ConvenioController::class, 'edit_nac'])
+Route::get('/activities/convenio_nac/{conv_id}/edit', [ConvenioNacController::class, 'edit'])
     ->name('convenios_nac.edit')->middleware('auth');
 
-Route::put('/activities/convenio_nac/{conv_id}', [ConvenioController::class, 'update_nac'])
+Route::put('/activities/convenio_nac/{conv_id}', [ConvenioNacController::class, 'update'])
     ->name('convenios_nac.update')->middleware('auth');
 
 
@@ -122,14 +124,14 @@ Route::post('/delete_inst_nac/{inst_id}', [InstEntNacController::class, 'destroy
     ->name('institucion_nac.destroy')->middleware('auth');
 
 // Convenios
-Route::post('/delete_conv_int/{conv_id}', [ConvenioController::class, 'destroy_int'])
+Route::post('/delete_conv_int/{conv_id}', [ConvenioIntController::class, 'destroy'])
     ->name('convenio_int.destroy')->middleware('auth');
 
-Route::post('/delete_conv_nac/{conv_id}', [ConvenioController::class, 'destroy_nac'])
+Route::post('/delete_conv_nac/{conv_id}', [ConvenioNacController::class, 'destroy'])
     ->name('convenio_nac.destroy')->middleware('auth');
 
 
 //Donwload files
 Route::get('/download_ints_nac/{file}', [InstEntNacController::class, 'download']);
-Route::get('/download_conv_nac/{file}', [ConvenioController::class, 'download_nac']);
-Route::get('/download_conv_int/{file}', [ConvenioController::class, 'download_int']);
+Route::get('/download_conv_nac/{file}', [ConvenioNacController::class, 'download']);
+Route::get('/download_conv_int/{file}', [ConvenioIntController::class, 'download']);

@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // Si se desea agregar más usuarios, usar bcrypt en las contraseñas
         $array = array(
             array('email' => 'coord@gmail.com', 'password' => '$2a$12$Tjgzzj.yfPHFMW5HkqyrTu/qy28fbhIF3mkTzoIRETkvd2k9glBSi', 'rol_id' => '1'),
             array('email' => 'ori@gmail.com', 'password' => '$2a$12$bjrk3E/Q9rFOMVfq5sH4cO5U8DH977yMogs7rBN15IJp92Xwat2Km', 'rol_id' => '2'),

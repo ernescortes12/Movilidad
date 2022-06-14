@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('pais');
             $table->string('ciudad');
+            $table->string('nit', 30)->nullable();
             $table->string('telefono')->nullable();
             $table->string('email');
             $table->tinyInteger('estado')->default(1);

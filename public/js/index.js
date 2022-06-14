@@ -19,8 +19,7 @@ function loadActions() {
             let opcion = document.createElement('option')
             opcion.value = action.toLowerCase()
             opcion.text = action
-            console.log(opcion)
-            // sec_option.appendChild(opcion)
+            sec_option.appendChild(opcion)
         });
     }
 }
@@ -109,4 +108,12 @@ function activateDegreeMNS() {
     var option = document.getElementById('mns_adminstudoc').value
     var titulo = document.getElementById('mns_titulos')
     activateDegree(option, titulo)
+}
+
+function countCharsOb(obj) {
+    document.getElementById("charNumOb").innerHTML = obj.value.length + '/600';
+}
+
+function countCharsAl(obj) {
+    document.getElementById("charNumAl").innerHTML = obj.value.length + '/600';
 }

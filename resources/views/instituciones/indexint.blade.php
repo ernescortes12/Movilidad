@@ -20,6 +20,7 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">País</th>
                                     <th scope="col">Ciudad</th>
+                                    <th scope="col">NIT o equivalente</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Email</th>
                                     @if (auth()->user()->rol_id == 3)
@@ -34,6 +35,7 @@
                                         <td> {{ $item->nombre }} </td>
                                         <td> {{ $item->pais }} </td>
                                         <td> {{ $item->ciudad }} </td>
+                                        <td> {{ $item->nit }} </td>
                                         <td> {{ $item->telefono }} </td>
                                         <td> {{ $item->email }} </td>
                                         @if (auth()->user()->rol_id == 3)
