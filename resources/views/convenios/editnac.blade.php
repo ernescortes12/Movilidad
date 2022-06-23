@@ -62,17 +62,18 @@
     </div>
     <div class="row mt-4">
         <div class="offset-1 col-10">
-            <input type="text" class="form-control border border-dark" placeholder="Número NIT..." id="conv_nitNac" name="conv_nitNac" value="{{ $convs->nit }}">
+            <textarea placeholder="Recursos..." class="form-control border border-dark"  name="conv_recursosNac" id="conv_recursosNac"  onkeyup="countCharsOb(this);" maxlength="600">{{ $convs->recursos }}</textarea>
+            <div class="row mt-0">
+                <div class="d-flex justify-content-end">
+                    <span id="charNumOb" class="text-center">0/600</span>
+                </div>
+            </div> 
         </div>
     </div>
     <div class="row mt-4">
         <div class="offset-1 col-10">
-            <textarea placeholder="Recursos..." class="form-control border border-dark"  name="conv_recursosNac" id="conv_recursosNac" >{{ $convs->recursos }}</textarea>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="offset-1 col-10">
-            <input type="text" class="form-control border border-dark" placeholder="* Vigencia..." id="conv_vigenciaNac" name="conv_vigenciaNac" value="{{ $convs->vigencia }}">
+            <label for="">* Vigencia del convenio:</label>
+            <input type="date" class="form-control border border-dark" id="conv_vigenciaNac" name="conv_vigenciaNac" value="{{ $convs->vigencia }}">
             @error('conv_vigenciaNac')
                 <span class="text-danger">*{{ $message }}</span>    
             @enderror

@@ -142,9 +142,6 @@ class ConvenioIntController extends Controller
         $convInt->programa = $request->post('conv_programInt');
         $convInt->objeto = $request->post('conv_objetoInt');
         $convInt->alcance = $request->post('conv_alcanceInt');
-        $convInt->activo = $request->post('con_activoNoInt');
-        $convInt->fechaInicio = $request->post('conv_datestartInt');
-        $convInt->vig_pro = $request->post('con_vigproInt');
         $convInt->nombProsesion = implode(',', $files_nomPos);
         $convInt->certFacultad = implode(',', $files_certFac);
         $convInt->actaSeguimiento = implode(',', $files_actaDoc);

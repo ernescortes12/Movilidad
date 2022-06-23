@@ -80,13 +80,10 @@
         <div class="row mt-4">
             <div class="offset-1 col-2">
                 <select class="form-select border border-dark" name="con_activoNoInt" id="con_activoNoInt">
-                    <option selected value="">-- * Activo --</option>
+                    <option selected value="">-- Activo --</option>
                     <option value="Sí" {{ $convs->activo == "Sí" ? "selected": '' }}>Sí</option>
                     <option value="No" {{ $convs->activo == "No" ? "selected": '' }}>No</option>
                 </select>
-                @error('con_activoNoInt')
-                    <span class="text-danger">*{{ $message }}</span>    
-                @enderror
             </div>
             <div class="col-8">
                 <div class="row ">
@@ -96,17 +93,11 @@
                 </div>
                 <div class="row mt-2 mb-1">
                     <div class="col-4">
-                        <label for="">* Fecha:</label>
+                        <label for="">Fecha:</label>
                         <input type="date" class="form-control border border-dark" id="conv_datestartInt" name="conv_datestartInt" value="{{ $convs->fechaInicio }}">
-                        @error('conv_datestartInt')
-                            <span class="text-danger">*{{ $message }}</span>    
-                        @enderror
                     </div>
                     <div class="col-8">
-                        <input class="form-control border border-dark" type="text" placeholder="* Vigencia Prorroga..." name="con_vigproInt" id="con_vigproInt" value="{{ $convs->vig_pro }}">
-                        @error('con_vigproInt')
-                            <span class="text-danger">*{{ $message }}</span>    
-                        @enderror
+                        <input class="form-control border border-dark" type="text" placeholder="Vigencia Prorroga..." name="con_vigproInt" id="con_vigproInt" value="{{ $convs->vig_pro }}">
                     </div>
                 </div>
             </div>

@@ -46,7 +46,7 @@
     </div>
     <div class="row mt-4 mb-4">
         <div class="offset-1 col-2">
-            <a href="{{ route('instituciones.show_int') }}" class="text-danger text-decoration-none">Regresar</a>
+            <a href="{{ route('instituciones.show_nac') }}" class="text-danger text-decoration-none">Regresar</a>
         </div>            
         <div class="offset-5 col-3">
             <button type="submit" class="w-100 btn_1 btn-primary rounded-pill border border-dark">Registrar</button>

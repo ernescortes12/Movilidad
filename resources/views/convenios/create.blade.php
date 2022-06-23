@@ -62,11 +62,6 @@
         </div>
         <div class="row mt-4">
             <div class="offset-1 col-10">
-                <input type="text" class="form-control border border-dark" placeholder="Departamento, Ciudad o Municipio..." id="conv_dtpcitymunNac" name="conv_dtpcitymunNac" value="{{ old('conv_dtpcitymunNac') }}">
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="offset-1 col-10">
                 <textarea placeholder="Recursos..." class="form-control border border-dark"  name="conv_recursosNac" id="conv_recursosNac" onkeyup="countCharsAl(this);" maxlength="600">{{  old('conv_recursosNac') }}</textarea>
                 <div class="d-flex justify-content-end">
                     <span id="charNumAl">0/600</span>
@@ -180,31 +175,6 @@
         <div class="row mt-0">
             <div class="offset-1 col-10 d-flex justify-content-end">
                 <span id="charNumAl" class="text-center">0/600</span>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="offset-1 col-2">
-                <select class="form-select border border-dark" name="con_activoNoInt" id="con_activoNoInt">
-                    <option selected value="">-- Activo --</option>
-                    <option value="Sí" {{ old('con_activoNoInt') == 'Sí' ? 'selected': '' }}>Sí</option>
-                    <option value="No" {{ old('con_activoNoInt') == 'No' ? 'selected': '' }}>No</option>
-                </select>
-            </div>
-            <div class="col-8">
-                <div class="row ">
-                    <div class="col mt-1">
-                        <label for="fechas">Prorrogas o Renovaciones: </label>
-                    </div>
-                </div>
-                <div class="row mt-2 mb-1">
-                    <div class="col-4">
-                        <label for="" class="mb-1">Fecha: </label>
-                        <input type="date" class="form-control border border-dark" id="conv_datestartInt" name="conv_datestartInt" value="{{ old('conv_datestartInt') }}">
-                    </div>
-                    <div class="col-8">
-                        <input class="form-control border border-dark" type="text" placeholder="Vigencia de la prórroga..." name="con_vigproInt" id="con_vigproInt" value="{{ old('con_vigproInt') }}">
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row mt-4">

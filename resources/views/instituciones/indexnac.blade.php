@@ -16,6 +16,7 @@
                     <table id="queryTable" class="">
                         <thead>
                             <tr> 
+                                <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Ciudad</th>
                                 <th scope="col">Nit</th>
@@ -30,6 +31,7 @@
                         <tbody>
                             @foreach ($intNacs as $item)
                                 <tr>
+                                    <td> {{ $item->id }} </td>
                                     <td> {{ $item->nombre }} </td>
                                     <td> {{ $item->ciudad }} </td>
                                     <td> {{ $item->nit }} </td>
