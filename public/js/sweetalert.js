@@ -8,7 +8,7 @@ $('.form-delete').submit(function (e) {
         showCancelButton: true,
         confirmButtonColor: '#dc3545',
         confirmButtonText: 'Sí, eliminar',
-        cancerlButtonText: 'No, cancelar',
+        cancelButtonText: 'No, cancelar',
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {

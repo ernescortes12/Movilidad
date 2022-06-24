@@ -2,7 +2,7 @@
 @section('title', 'Convenios Internacionales')
 
 @section('content')
-<form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 89%;">
+<form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 91%;">
     @csrf
     <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
@@ -25,7 +25,9 @@
                                 <th scope="col">Activo</th>
                                 <th scope="col">Fecha de Inicio</th>
                                 <th scope="col">Vigencia de la prorroga</th>
+                                @if (auth()->user()->rol_id == "3")
                                 <th scope="col">Acciones</th>
+                                @endif
                                 <th scope="col">Objeto</th>
                                 <th scope="col">Alcance</th>
                                 <th scope="col">Identificacion (Representante legal o persona en facultad de firmar)</th>
@@ -56,6 +58,7 @@
                                     <td> {{ $item->activo }} </td>
                                     <td> {{ $item->fechaInicio }} </td>
                                     <td> {{ $item->vig_pro }} </td>
+                                    @if (auth()->user()->rol_id == "3")
                                     <td>
                                         <div class="row">
                                             <div class="col">
@@ -71,6 +74,7 @@
                                             </div>
                                         </form>
                                     </td>
+                                    @endif 
                                     <td> <br>{{ $item->objeto }} </td>
                                     <td> <br>{{ $item->alcance }} </td>
                                     <td> <br><a href="{{ url('/download_conv_int', $item->docSupervisor) }}">{{ $item->docSupervisor }}</a></td>

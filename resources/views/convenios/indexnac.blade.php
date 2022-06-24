@@ -2,7 +2,11 @@
 @section('title', 'Convenios Nacionales')
 
 @section('content')
+@if(auth()->user()->rol_id == "2")
 <form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 74%;">
+@elseif(auth()->user()->rol_id == "3")
+<form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 70%;">
+@endif
     @csrf
     <div class="row mt-4 p-3 shadow-lg rounded-3 titles">
         <div class="offset-1 col-10">
