@@ -27,12 +27,12 @@ return new class extends Migration
             $table->string('objeto', 600)->nullable();
             $table->string('resultado', 600)->nullable();
             $table->tinyInteger('estado')->default(1);
-            $table->bigInteger('instEnt_id')->unsigned()->nullable();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('instEnt_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('instEnt_id')->references('id')->on('inst_ent_nacs')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('instEnt_id')->references('id')->on('inst_ent_nacs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

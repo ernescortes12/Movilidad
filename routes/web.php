@@ -11,6 +11,7 @@ use App\Http\Controllers\MovilidadIntEntController;
 use App\Http\Controllers\MovilidadIntSalController;
 use App\Http\Controllers\MovilidadNacEntController;
 use App\Http\Controllers\MovilidadNacSalController;
+use App\Http\Controllers\UserController;
 use App\Models\ConvenioNac;
 
 // Login Routes
@@ -18,6 +19,9 @@ Route::get('/', [LoginController::class, 'show'])->name('login.index');
 Route::post('/', [LoginController::class, 'consult'])->name('login.consult');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 Route::get('/activities', [LoginController::class, 'activity_view'])->middleware('auth')->name('login.activites');
+
+// Usuarios
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 // Create
 // Instituciones

@@ -17,11 +17,12 @@ class RolSeeder extends Seeder
     {
         // Agregar acá otros roles si es necesario
         $array = array(
-            array('rol_name' => 'Coordinacion'),
-            array('rol_name' => 'ORI'),
-            array('rol_name' => 'DIE'),
-            array('rol_name' => 'Decanatura'),
-            array('rol_name' => 'Otra dependencia'),
+            array('rol_codigo' => 'COORD', 'rol_name' => 'Coordinacion', 'estado' => 1),
+            array('rol_codigo' => 'ORI', 'rol_name' => 'Oficina de Relaciones Interinstitucionales', 'estado' => 1),
+            array('rol_codigo' => 'DIE', 'rol_name' => 'Dirección de Investigación y Extensión', 'estado' => 1),
+            array('rol_codigo' => 'DEC', 'rol_name' => 'Decanatura', 'estado' => 1),
+            array('rol_codigo' => 'OTRA', 'rol_name' => 'Otra dependencia', 'estado' => 1),
+            array('rol_codigo' => 'SUPERADMIN', 'rol_name' => 'Super Administrador', 'estado' => 1),
         );
 
         DB::table('roles')->insert($array);

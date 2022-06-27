@@ -5,7 +5,6 @@
 @if (auth()->user()->rol_id =='2')
     <form method="POST" action="{{ route('instituciones.store_nac') }}" class="form-inst border border-2 rounded-3 shadow-lg" enctype="multipart/form-data">
         @csrf
-        
         <div class="row mt-3 p-3 shadow-lg rounded-3 titles">
             <div class="offset-1 col-10">
                 <h4 class="text-center">Registro Institución/Entidad Nacional</h4>

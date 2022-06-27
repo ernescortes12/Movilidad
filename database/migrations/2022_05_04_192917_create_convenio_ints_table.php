@@ -36,10 +36,10 @@ return new class extends Migration
             $table->string('actaSeguimiento')->nullable(); //si
             $table->string('resnombSupervisor');
             $table->tinyInteger('estado')->default(1);
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

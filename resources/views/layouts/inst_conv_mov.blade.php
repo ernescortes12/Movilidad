@@ -17,6 +17,7 @@
     <script src="//cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>  
     <script src="//cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>  
     {{-- BT style --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     {{-- CSS own --}}
     <link rel="stylesheet" href="{{ asset('css/style_inst_conv_mov.css') }}">

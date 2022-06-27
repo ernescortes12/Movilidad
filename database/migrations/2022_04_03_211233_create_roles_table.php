@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
+            $table->string('rol_codigo');
             $table->string('rol_name', 50);
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

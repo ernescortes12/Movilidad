@@ -57,7 +57,7 @@
                 <button class="w-100 btn btn-primary rounded-pill border border-dark">Siguiente</button>
             </div>
             
-        @elseif(auth()->user()->rol_id == '2' or auth()->user()->rol_id=='3')
+        @elseif(auth()->user()->rol_id == '2' or auth()->user()->rol_id=='3' or auth()->user()->rol_id=='6')
             {{-- Sección de ORI y DIE --}}
             <div class="row mt-3">
                 <div class="col">
@@ -65,6 +65,8 @@
                         <h4 class="text-center">Oficina de Relaciones Interinstitucionales</h4>
                     @elseif(auth()->user()->rol_id=='3')
                         <h4 class="text-center">Dirección de Investigación y Extensión</h4>
+                    @elseif(auth()->user()->rol_id=='6')
+                        <h4 class="text-center">Administrador</h4>
                     @endif
                 </div>
             </div>

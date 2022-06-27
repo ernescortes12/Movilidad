@@ -86,7 +86,4 @@ class InstEntIntController extends Controller
         return redirect('/activities/cons_instituciones_int')
             ->with('success', 'Institución/Entidad con código ' . $inst->id . ' eliminada correctamente!');
     }
-
-    //Nacional
-
 }

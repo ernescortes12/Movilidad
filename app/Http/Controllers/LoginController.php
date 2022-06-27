@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConvenioInt;
-use App\Models\ConvenioNac;
-use App\Models\InstEntNac;
-use App\Models\InstitucionEntidadInt;
+
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
