@@ -2,7 +2,7 @@
 @section('title', 'Actividades')
 
 @section('act_content')
-    <form name="f" action="" class="border border-2 rounded-3 shadow-lg act_form m-5" onchange="activateNacInt();" >
+    <form name="f" action="" class="border border-2 rounded-3 shadow-lg act_form m-5">
         @csrf
         <img src="{{asset('images/index/header_login.jpg')}}" alt="" class="img-fluid m-0 rounded-top">
         
@@ -80,7 +80,11 @@
             </div>
             <div class="offset-1 col-10 mt-4">
                 <label for="" class="mb-1">Institución, Convenio o Movilidad: </label>
-                <select class="form-select border border-dark" name="about_what" id="about_what" onchange="activateEntSal()">
+                @if(auth()->user()->rol_id == '2' or auth()->user()->rol_id=='3')
+                <select class="form-select border border-dark" name="about_what" id="about_what" onchange="activateEntSal(); activateNacInt();">
+                @elseif(auth()->user()->rol_id=='6')
+                <select class="form-select border border-dark" name="about_what" id="about_what" onchange="activateEntSal();">
+                @endif
                     <option selected value="">-- Seleccione una opción --</option>
                     <option value="convenios">Convenio</option>
                     <option value="instituciones">Institución</option>
@@ -89,7 +93,11 @@
             </div>
             <div class="offset-1 col-10 mt-4">
                 <label for="" class="mb-1">A nivel: </label>
+                @if(auth()->user()->rol_id == '2' or auth()->user()->rol_id=='3')
                 <select class="form-select border border-dark"  name="nacoInt" id="nacoInt" disabled title="Solo se habilitará para registro de Movilidades o consultas en general">
+                @elseif(auth()->user()->rol_id=='6')
+                <select class="form-select border border-dark"  name="nacoInt" id="nacoInt" title="Solo se habilitará para registro de Movilidades o consultas en general">
+                @endif
                     <option value="">-- Seleccione una opción --</option>
                     <option value="internacional">Internacional</option>
                     <option value="nacional">Nacional</option>

@@ -73,16 +73,4 @@
             </div>
         </div>
     </form>
-    <script type="text/javascript">
-        function mostrarPassword(){
-	        var cambio = document.getElementById("password");
-	        if(cambio.type == "password"){
-	        	cambio.type = "text";
-	        	$('.icon').removeClass('bi bi-eye-slash').addClass('bi bi-eye');
-	        }else{
-	        	cambio.type = "password";
-	        	$('.icon').removeClass('bi bi-eye').addClass('bi bi-eye-slash');
-	        }
-	    } 
-    </script>
 @endsection

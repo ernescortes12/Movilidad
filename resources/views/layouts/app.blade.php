@@ -62,7 +62,5 @@
         </script>
     @endif
 </body>
-{{-- JS --}}
 
-{{-- <script src="{{asset('js/die.js')}}"></script> --}}
 </html>

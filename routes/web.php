@@ -22,6 +22,8 @@ Route::get('/activities', [LoginController::class, 'activity_view'])->middleware
 
 // Usuarios
 Route::resource('users', UserController::class)->middleware(['auth']);
+Route::get('user/password/{id}/edit', [UserController::class, 'editpass'])->name('password.edit')->middleware(['auth']);
+Route::put('user/password/{id}/update', [UserController::class, 'updatepass'])->name('password.update')->middleware(['auth']);
 
 // Create
 // Instituciones

@@ -3,7 +3,7 @@
 @section('title', 'Gestor de Usuarios')
 
 @section('content')
-    <form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 67%;">
+    <form action="" class="border border-2 rounded-3 shadow-lg mt-5 mb-5" style="width: 70%;">
         <div class="row mt-4">
             <div class="offset-9 col-2">
                 <a href="{{ route('users.create') }}" class="btn btn-primary w-100"><i class="bi bi-person-plus"></i> Crear</a>
@@ -33,10 +33,10 @@
                                         <td> {{ $item->rol_codigo }} </td>
                                         <td>
                                             <div class="row">
-                                                <div class="col-8">
+                                                <div class="offset-1 col-7 me-0">
                                                     <a class="btn btn-primary w-100" href="{{ route('users.edit', $item->id) }}"><i class="bi bi-pencil-square"></i> Editar</a>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-3 ms-0">
                                                     <form action="{{ route('users.destroy', $item->id) }}" method="POST" class="form-delete">
                                                         @csrf
                                                         @method('delete')
@@ -44,8 +44,14 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                            <div class="row mt-1">
+                                                <div class="offset-1 col-10">
+                                                    <a class="btn btn-outline-primary w-100 btn-sm" href="{{ route('password.edit', $item->id) }}"><i class="bi bi-key"></i> Cambiar contraseña</a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
+                                    
                                 @endforeach
                             </tbody>
                         </table> 
