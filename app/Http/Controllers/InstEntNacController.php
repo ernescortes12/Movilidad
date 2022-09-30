@@ -13,6 +13,11 @@ class InstEntNacController extends Controller
         return view('instituciones.indexnac', compact('intNacs'));
     }
 
+    public function create(Request $request)
+    {
+        return view('instituciones.createnac');
+    }
+
 
     public function store(Request $request)
     {

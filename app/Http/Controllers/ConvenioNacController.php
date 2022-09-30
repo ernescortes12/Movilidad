@@ -17,6 +17,12 @@ class ConvenioNacController extends Controller
         return view('convenios.indexnac', compact('convNacs'));
     }
 
+    public function create()
+    {
+        $instEntNacs = InstEntNac::where('estado', 1)->get();
+        return view('convenios.createnac', compact('instEntNacs'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

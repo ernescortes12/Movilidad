@@ -42,9 +42,29 @@ class LoginController extends Controller
 
         if ($about_what != ""  || $actions != "") {
             if ($actions == "registrar" && $about_what == "convenios") {
-                return redirect('/activities/registro_convenios');
+                if (auth()->user()->rol_id == '2') {
+                    return redirect('/activities/registro_convenios_nac');
+                } else if (auth()->user()->rol_id == '3') {
+                    return redirect('/activities/registro_convenios_int');
+                } else if (auth()->user()->rol_id == '6') {
+                    if ($nacoInt == 'internacional') {
+                        return redirect('/activities/registro_convenios_int');
+                    } else if ($nacoInt == 'nacional') {
+                        return redirect('/activities/registro_convenios_nac');
+                    }
+                }
             } else if ($actions == "registrar" && $about_what == "instituciones") {
-                return redirect('/activities/registro_instituciones');
+                if (auth()->user()->rol_id == '2') {
+                    return redirect('/activities/registro_instituciones_nac');
+                } else if (auth()->user()->rol_id == '3') {
+                    return redirect('/activities/registro_instituciones_int');
+                } else if (auth()->user()->rol_id == '6') {
+                    if ($nacoInt == 'internacional') {
+                        return redirect('/activities/registro_instituciones_int');
+                    } else if ($nacoInt == 'nacional') {
+                        return redirect('/activities/registro_instituciones_nac');
+                    }
+                }
             } else if ($actions == "consultar" && $about_what == "instituciones" && $nacoInt == "internacional") {
                 return redirect('/activities/cons_instituciones_int');
             } else if ($actions == "consultar" && $about_what == "instituciones" && $nacoInt == "nacional") {

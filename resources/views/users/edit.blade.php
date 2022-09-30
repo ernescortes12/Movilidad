@@ -3,7 +3,7 @@
 @section('Registro de usuario')
 
 @section('content')
-    <form method="POST" action="{{ route('users.update', $user) }}" style="width: 30% ;" class="border border-2 rounded-3 shadow-lgphp">
+    <form method="POST" action="{{ route('users.update', $user) }}" style="width: 30% ;" class="border border-2 rounded-3 shadow-lg">
         @csrf
         @method('put')
         <div class="row mt-3 p-3 shadow-lg rounded-3 titles">

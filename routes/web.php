@@ -21,14 +21,17 @@ Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy'
 Route::get('/activities', [LoginController::class, 'activity_view'])->middleware('auth')->name('login.activites');
 
 // Usuarios
-Route::resource('users', UserController::class)->middleware(['auth']);
-Route::get('user/password/{id}/edit', [UserController::class, 'editpass'])->name('password.edit')->middleware(['auth']);
-Route::put('user/password/{id}/update', [UserController::class, 'updatepass'])->name('password.update')->middleware(['auth']);
+Route::resource('users', UserController::class)->middleware(['auth', 'super']);
+Route::get('user/password/{id}/edit', [UserController::class, 'editpass'])->name('password.edit')->middleware(['auth', 'super']);
+Route::put('user/password/{id}/update', [UserController::class, 'updatepass'])->name('password.update')->middleware(['auth', 'super']);
 
 // Create
 // Instituciones
-Route::get('/activities/registro_instituciones', [InstEntIntController::class, 'create'])
-    ->name('instituciones.create')->middleware('auth');
+Route::get('/activities/registro_instituciones_int', [InstEntIntController::class, 'create'])
+    ->name('institucionesInt.create')->middleware('auth');
+
+Route::get('/activities/registro_instituciones_nac', [InstEntNacController::class, 'create'])
+    ->name('institucionesNac.create')->middleware('auth');
 
 Route::post('/store_instituciones_nac', [InstEntNacController::class, 'store'])
     ->name('instituciones.store_nac')->middleware(['auth']);
@@ -37,8 +40,11 @@ Route::post('/store_instituciones_int', [InstEntIntController::class, 'store'])
     ->name('instituciones.store_int')->middleware(['auth']);
 
 // Convenios 
-Route::get('/activities/registro_convenios', [ConvenioIntController::class, 'create'])
-    ->name('convenios.create')->middleware('auth');
+Route::get('/activities/registro_convenios_nac', [ConvenioNacController::class, 'create'])
+    ->name('conveniosInt.create')->middleware('auth');
+
+Route::get('/activities/registro_convenios_int', [ConvenioIntController::class, 'create'])
+    ->name('conveniosNac.create')->middleware('auth');
 
 Route::post('/store_convenios_nac', [ConvenioNacController::class, 'store'])
     ->name('convenios.store_nac')->middleware(['auth']);

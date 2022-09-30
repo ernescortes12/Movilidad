@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Options
+class Super
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,10 @@ class Options
      */
     public function handle(Request $request, Closure $next)
     {
-        $actions = $request->get('actions');
-        $about_what = $request->get('about_what');
-
-        if ($actions == "" || $about_what == "") {
-            return redirect('/activities');
+        if (auth()->user()->rol_id == '6') {
+            return $next($request);
+        } else {
+            return back();
         }
-        // return $next($request);
     }
 }

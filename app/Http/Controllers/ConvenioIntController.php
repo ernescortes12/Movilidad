@@ -18,10 +18,8 @@ class ConvenioIntController extends Controller
 
     public function create()
     {
-        $instEntNacs = InstEntNac::where('estado', 1)->get();
         $instEntInt = InstitucionEntidadInt::where('estado', 1)->get();
-        return view('convenios.create', compact(['instEntNacs', 'instEntInt']))
-            ->with('success', 'Institución/Entidad creada correctamente!');
+        return view('convenios.createint', compact('instEntInt'));
     }
 
 

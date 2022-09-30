@@ -3,7 +3,7 @@
 @section('title', 'Cambio de contraseña')
 
 @section('content')
-    <form action="{{ route('password.update', $user) }}" style="width: 30%;" method="POST">
+    <form action="{{ route('password.update', $user) }}" style="width: 30%;" method="POST" class="border border-2 rounded-3 shadow-lg">
         @csrf
         @method('put')
         <div class="row mt-3 p-3 shadow-lg rounded-3 titles">

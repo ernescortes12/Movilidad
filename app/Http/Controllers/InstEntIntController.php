@@ -17,7 +17,7 @@ class InstEntIntController extends Controller
 
     public function create(Request $request)
     {
-        return view('instituciones.create');
+        return view('instituciones.createint');
     }
 
 
